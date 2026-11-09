@@ -29,11 +29,18 @@ const cases = [
   },
   {
     id: 'cross-platform', title: 'BEYOND THE BROWSER', category: 'WEB · MOBILE · DESKTOP / 3D',
-    subtitle: '디바이스의 경계를 넘어, 필요한 곳에서 같은 일을 할 수 있도록.',
+    subtitle: 'DOF Sync Mobile로 이어지는 웹·모바일 경험.',
     period: '2022 — 2024 · 프로젝트별 참여', role: 'React Native 앱 신규 개발·배포, Electron 기능 및 3D 웹뷰 개발',
-    stack: 'React, React Native, Electron, Three.js, React Three Fiber, Next.js', image: 'project-mobile.svg',
+    stack: 'React, React Native, Electron, Three.js, React Three Fiber, Next.js',
+    images: [
+      {file: 'dof-sync-mobile-board.png', alt: 'DOF Sync Mobile 프로젝트 대시보드 공식 스크린샷'},
+      {file: 'dof-sync-mobile-viewer.png', alt: 'DOF Sync Mobile 3D 파일 뷰어 공식 스크린샷'}
+    ],
+    imageNote: 'DOF Sync Mobile 공식 앱스토어의 프로젝트 대시보드와 3D 파일 뷰어 스크린샷입니다.',
+    imageSource: 'https://apps.apple.com/kr/app/dof-sync-mobile/id6451134757', imageSourceLabel: 'App Store ↗',
+    url: 'https://apps.apple.com/kr/app/dof-sync-mobile/id6451134757', urlLabel: 'VIEW ON APP STORE ↗',
     blocks: [
-      ['MOBILE', '앱을 처음부터 배포까지', '2022.07–2022.10, 치아 디자인 서비스 Bridge Mobile을 React Native로 신규 개발하고 Android·iOS에 배포했습니다. 프로젝트 기여도는 100%입니다. 2023.05–2023.07에는 Sync Mobile 개발에도 참여했습니다.'],
+      ['MOBILE', '앱을 처음부터 배포까지', '2022.07–2022.10, 치아 디자인 서비스 Bridge Mobile을 React Native로 신규 개발하고 Android·iOS에 배포했습니다. 프로젝트 기여도는 100%입니다. 2023.05–2023.07에는 DOF Sync Mobile 개발에도 참여했습니다.'],
       ['DESKTOP', '실제 작업 환경과 맞닿는 서비스', '2023.01–2023.04, React·Electron 기반 Sync 오프라인 버전과 Clinic 개발에 참여했습니다. 로컬 파일과 프로젝트 경로, API의 정합성을 살피고 자동 업데이트와 실행 오류를 개선했습니다.'],
       ['3D & INTEGRATION', '의료 데이터의 사용자 접점', '2024.05–2024.06, 환자관리프로그램 덴트웹과 Sync를 연동하고 치아 스캔 데이터를 웹에서 확인하는 3D 웹뷰를 제작했습니다. React·Three.js·React Three Fiber를 사용했으며 프로젝트 기여도는 100%입니다.'],
       ['WEB', '사용 환경에 맞춰 확장하기', '밀링머신 관리 서비스 MotionApp의 웹 버전 개발, DOF 홈페이지의 WordPress에서 Next.js 전환, Admin 백오피스 개발과 유지보수에도 참여했습니다.']
@@ -104,13 +111,19 @@ function showCase(index) {
   });
   header.append(eyebrow,title,subtitle);
   if(item.url){
-    const visit=document.createElement('a');visit.className='text-link mono case-visit';visit.href=item.url;visit.target='_blank';visit.rel='noopener noreferrer';visit.textContent='VISIT MADI ↗';header.append(visit);
+    const visit=document.createElement('a');visit.className='text-link mono case-visit';visit.href=item.url;visit.target='_blank';visit.rel='noopener noreferrer';visit.textContent=item.urlLabel || 'VISIT MADI ↗';header.append(visit);
   }
   header.append(facts);
-  const image=document.createElement('img');image.className=(item.url||item.imageFit==='contain')?'case-image case-image-app':'case-image';image.src=`/assets/${item.image}`;image.alt=item.imageAlt||(item.url?`${item.title} 실제 앱 작업실 화면`:`${item.title} 프로젝트 개념도`);
+  let visual;
+  if(item.images){
+    visual=document.createElement('div');visual.className='case-mobile-gallery';
+    item.images.forEach(shot=>{const img=document.createElement('img');img.src=`/assets/${shot.file}`;img.alt=shot.alt;img.width=392;img.height=696;visual.append(img);});
+  }else{
+    visual=document.createElement('img');visual.className=(item.url||item.imageFit==='contain')?'case-image case-image-app':'case-image';visual.src=`/assets/${item.image}`;visual.alt=item.imageAlt||(item.url?`${item.title} 실제 앱 작업실 화면`:`${item.title} 프로젝트 개념도`);
+  }
   const note=document.createElement('p');note.className='case-image-note';note.textContent=item.imageNote || '프로젝트 내용을 재구성한 개념도 · 실제 제품 화면이 아닙니다.';
-  if(item.imageSource){const source=document.createElement('a');source.href=item.imageSource;source.target='_blank';source.rel='noopener noreferrer';source.textContent='DOF 공식 페이지 ↗';source.className='image-source-link';note.append(document.createTextNode(' '),source);}
-  container.append(header,image,note);
+  if(item.imageSource){const source=document.createElement('a');source.href=item.imageSource;source.target='_blank';source.rel='noopener noreferrer';source.textContent=item.imageSourceLabel || 'DOF 공식 페이지 ↗';source.className='image-source-link';note.append(document.createTextNode(' '),source);}
+  container.append(header,visual,note);
   item.blocks.forEach(([label,heading,body])=>{
     const section=document.createElement('section');section.className='case-block';
     const h=document.createElement('h3');const span=document.createElement('span');span.className='mono';span.textContent=label;h.append(span,document.createTextNode(heading));

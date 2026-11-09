@@ -64,3 +64,13 @@ dialog{border:0;color:var(--ink);background:var(--paper);padding:0}dialog::backd
 .has-motion .motion-title:focus-within .motion-line-inner{opacity:1;transform:none;transition:none}
 @media(max-width:680px){.has-motion .motion-title .motion-line-inner{transition-duration:.8s}.has-motion .text-reveal:not(.is-visible){transform:translate3d(0,12px,0)}}
 @media(prefers-reduced-motion:reduce){.has-motion .motion-title .motion-line-inner,.has-motion .text-reveal{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* Official DOF Sync Mobile screens retain their complete App Store artwork. */
+.sync-mobile-preview{aspect-ratio:6/7;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:20px;padding:65px 25px;background:#29266b}
+.sync-mobile-preview img{border-radius:9px;box-shadow:0 18px 35px #10103940}
+.sync-mobile-preview img:first-child{translate:0 -16px}
+.sync-mobile-preview img:nth-child(2){translate:0 16px}
+.project-mobile .project-visual-label{mix-blend-mode:normal;color:#fff}
+.case-mobile-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,300px));justify-content:center;align-items:start;gap:28px;padding:35px;background:#29266b}
+.case-mobile-gallery img{display:block;width:100%;height:auto;border-radius:9px;box-shadow:0 18px 35px #10103940}
+@media(max-width:680px){.sync-mobile-preview{padding:42px 16px;gap:12px}.sync-mobile-preview img{border-radius:6px}.sync-mobile-preview img:first-child{translate:0 -10px}.sync-mobile-preview img:nth-child(2){translate:0 10px}.case-mobile-gallery{gap:12px;padding:20px 14px}.case-mobile-gallery img{border-radius:5px}}
