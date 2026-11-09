@@ -1,6 +1,7 @@
 """Generate original vector artwork. Run from the repository root."""
 import math
 from pathlib import Path
+from knot_art import write_knot_assets
 
 OUT = Path(__file__).resolve().parents[1] / 'dist' / 'assets'
 OUT.mkdir(parents=True, exist_ok=True)
@@ -50,8 +51,7 @@ def knot(cx,cy,scale=72,steps=160,sides=20):
             faces.append((sum(p[2] for p in points)/4,face))
     return ''.join(p for z,p in sorted(faces))
 
-form=svg(520,520, '<ellipse cx="260" cy="439" rx="104" ry="13" fill="#282d20" opacity=".17" filter="url(#shadow)"/>'+knot(260,238,75))
-(OUT/'form.svg').write_text(form)
+write_knot_assets()
 
 # Cloud platform: a structural object with explicitly conceptual system labels.
 b='<rect width="1440" height="900" fill="url(#studio)"/><rect width="1440" height="900" fill="url(#grid)"/>'
@@ -111,6 +111,5 @@ for i,(label,small) in enumerate([('BUSINESS','UNDERSTAND THE WORK'),('DELIVERY'
 b+=text(1070,106,'CONTINUOUS',16,'#626d55')+text(1070,133,'BY INTENTION.',16,'#626d55')
 b+=text(70,656,'ERP / CLOUD / CI &amp; CD / TEAM',11,'#6a745e')
 (OUT/'project-operations.svg').write_text(svg(1440,700,b))
-(OUT/'favicon.svg').write_text(svg(64,64,'<path d="M14 11v42m35-42L14 34l35 19" fill="none" stroke="#efefea" stroke-width="9"/>','#161714'))
 (OUT/'social.svg').write_text(svg(1200,630,text(55,65,'KYUNGWON KWON / PORTFOLIO',18)+text(50,300,'FULL-STACK',163,'#161714','Arial, sans-serif','font-weight="900" letter-spacing="-10"')+text(50,461,'ENGINEER',163,'#161714','Arial, sans-serif','font-weight="900" letter-spacing="-10"')+text(55,568,'SPRINGCOTTON.COM / SEOUL, KR',17),'#efefea'))
 print('Generated original SVG assets:', ', '.join(p.name for p in OUT.glob('*.svg')))

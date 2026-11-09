@@ -27,3 +27,7 @@ Fonts: Barlow Condensed and IBM Plex Mono, SIL Open Font License (see `dist/asse
 Technology logos: [Devicon v2.17.0](https://github.com/devicons/devicon/tree/v2.17.0), MIT license (`dist/assets/icons/LICENSE`). The Madi image is a screenshot of the live application.
 
 Sync image source: https://doflab.com/en/software/sync (`project_request.jpg`, © DOF). Madi was recaptured from the live v0.1.5 piano editor on 2026-11-09.
+
+## Knot identity
+
+`scripts/knot_art.py` generates a closed trefoil with periodic surface normals and a flat front projection with three woven crossings. Run it with Python, then use `scripts/render-knot-previews.cjs` with an installed `sharp` package directory to render the hero PNG, multi-size ICO/PNG favicons, Apple touch icon and review sheet. The hero uses the rasterized artwork so browsers do not need to repaint the detailed vector mesh.
