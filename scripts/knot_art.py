@@ -3,7 +3,7 @@ import json
 import math
 from pathlib import Path
 
-OUT = Path(__file__).resolve().parents[1] / 'dist' / 'assets'
+OUT = Path(__file__).resolve().parents[1] / 'public' / 'assets'
 TAU = math.tau
 
 

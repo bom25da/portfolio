@@ -1,6 +1,4 @@
-'use strict';
-
-const cases = [
+const caseStudies = [
   {
     id: 'sync', title: 'SYNC PLATFORM', category: 'DIGITAL DENTISTRY / B2B PLATFORM',
     subtitle: '치과와 기공소의 업무가 자연스럽게 이어지는 플랫폼.',
@@ -76,125 +74,124 @@ const cases = [
   }
 ];
 
-const menuDialog = document.querySelector('#menu-dialog');
-const caseDialog = document.querySelector('#case-dialog');
-document.querySelector('#menu-open').addEventListener('click', () => menuDialog.showModal());
-document.querySelector('#menu-close').addEventListener('click', () => menuDialog.close());
-menuDialog.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => menuDialog.close()));
-document.querySelector('#case-close').addEventListener('click', () => caseDialog.close());
-
-let activeCase = 0;
-function showCase(index) {
-  activeCase = (index + cases.length) % cases.length;
-  const item = cases[activeCase];
-  document.querySelector('#case-index').textContent = `PROJECT / ${String(activeCase + 1).padStart(2, '0')} — ${String(cases.length).padStart(2, '0')}`;
-  const container = document.querySelector('#case-content');
-  container.replaceChildren();
-  const header = document.createElement('header');
-  header.className = 'case-header';
-  const eyebrow = document.createElement('p');
-  eyebrow.className = 'case-eyebrow mono';
-  eyebrow.textContent = item.category;
-  const title = document.createElement('h2');
-  title.id = 'case-title';
-  title.textContent = item.title;
-  const subtitle = document.createElement('p');
-  subtitle.className = 'case-subtitle';
-  subtitle.textContent = item.subtitle;
-  const facts = document.createElement('div');
-  facts.className = 'case-facts';
-  [['PERIOD',item.period],['MY ROLE',item.role],['TECHNOLOGIES',item.stack]].forEach(([label,value]) => {
-    const cell=document.createElement('div');
-    const tag=document.createElement('span');tag.className='mono';tag.textContent=label;
-    const content=document.createElement('p');content.textContent=value;
-    cell.append(tag,content);facts.append(cell);
-  });
-  header.append(eyebrow,title,subtitle);
-  if(item.url){
-    const visit=document.createElement('a');visit.className='text-link mono case-visit';visit.href=item.url;visit.target='_blank';visit.rel='noopener noreferrer';visit.textContent=item.urlLabel || 'VISIT MADI ↗';header.append(visit);
-  }
-  header.append(facts);
-  let visual;
-  if(item.images){
-    visual=document.createElement('div');visual.className='case-mobile-gallery';
-    item.images.forEach(shot=>{const img=document.createElement('img');img.src=`/assets/${shot.file}`;img.alt=shot.alt;img.width=392;img.height=696;visual.append(img);});
-  }else{
-    visual=document.createElement('img');visual.className=(item.url||item.imageFit==='contain')?'case-image case-image-app':'case-image';visual.src=`/assets/${item.image}`;visual.alt=item.imageAlt||(item.url?`${item.title} 실제 앱 작업실 화면`:`${item.title} 프로젝트 개념도`);
-  }
-  const note=document.createElement('p');note.className='case-image-note';note.textContent=item.imageNote || '프로젝트 내용을 재구성한 개념도 · 실제 제품 화면이 아닙니다.';
-  if(item.imageSource){const source=document.createElement('a');source.href=item.imageSource;source.target='_blank';source.rel='noopener noreferrer';source.textContent=item.imageSourceLabel || 'DOF 공식 페이지 ↗';source.className='image-source-link';note.append(document.createTextNode(' '),source);}
-  container.append(header,visual,note);
-  item.blocks.forEach(([label,heading,body])=>{
-    const section=document.createElement('section');section.className='case-block';
-    const h=document.createElement('h3');const span=document.createElement('span');span.className='mono';span.textContent=label;h.append(span,document.createTextNode(heading));
-    const p=document.createElement('p');p.textContent=body;section.append(h,p);container.append(section);
-  });
-  const scope=document.createElement('p');scope.className='case-scope';scope.textContent=item.scope;container.append(scope);
-  if(!caseDialog.open) caseDialog.showModal();
-  caseDialog.scrollTop=0;
-  document.querySelector('#case-close').focus({preventScroll:true});
-}
-document.querySelectorAll('[data-case]').forEach(button=>button.addEventListener('click',()=>showCase(cases.findIndex(c=>c.id===button.dataset.case))));
-document.querySelector('#case-prev').addEventListener('click',()=>showCase(activeCase-1));
-document.querySelector('#case-next').addEventListener('click',()=>showCase(activeCase+1));
-caseDialog.addEventListener('click',event=>{if(event.target===caseDialog){const r=caseDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)caseDialog.close();}});
-
-function updateTime(){document.querySelector('#seoul-time').textContent=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date());}
-updateTime();setInterval(updateTime,60000);
-document.querySelector('#copyright-year').textContent=new Date().getFullYear();
-document.querySelector('#copy-email').addEventListener('click',async()=>{
-  const status=document.querySelector('#copy-status');
-  try{await navigator.clipboard.writeText('greenish9@naver.com');status.textContent='이메일 주소를 복사했습니다.';}
-  catch{status.textContent='greenish9@naver.com — 주소를 선택해 복사하거나 이메일 링크를 눌러 주세요.';}
-});
-
-const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)');
-const textSelectors=[
-  '.hero-intro > *', '.section-marker > span', '.statement-caption',
-  '.statement-copy > *', '.section-heading > p',
-  '.project-meta > div:first-child > *', '.project-tags > *', '.side-project-heading > *',
-  '.about-copy > *', '.experience-row > :not(.experience-arrow)',
-  '.capabilities > .row-label', '.capability-row > h3', '.stack-list > li',
-  '.contact-prelude', '.contact-bottom > *', '.footer-name', '.footer-bottom > *'
-];
-document.querySelectorAll(textSelectors.join(',')).forEach(el=>el.classList.add('text-reveal'));
-document.querySelectorAll('.hero-intro,.section-marker,.statement-copy,.project-meta > div:first-child,.project-tags,.side-project-heading,.about-copy,.experience-row,.stack-list,.contact-bottom,.footer-bottom').forEach(group=>{
-  [...group.children].filter(el=>el.classList.contains('text-reveal')).forEach((el,index)=>{
-    el.dataset.motionDelay=String(Math.min(index,4));
-  });
-});
-const motionTargets=[...document.querySelectorAll('.motion-title,.text-reveal,.project.reveal')];
-let motionObserver;
-function configureScrollMotion(){
-  motionObserver?.disconnect();
-  document.body.classList.remove('has-motion');
-  if(!('IntersectionObserver' in window)||reduceMotion.matches)return;
-  motionObserver=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      const target=entry.target;
-      if(target.matches('.project.reveal')){
-        // Keep the large image cards stable after their first entrance.
-        if(entry.isIntersecting){target.classList.add('is-visible');motionObserver.unobserve(target);}
-      }else{
-        // Replay only after the complete text block has left the viewport.
-        target.classList.toggle('is-visible',entry.isIntersecting);
+const projectCards = {
+  "sync": {
+    "className": "project-sync",
+    "id": null,
+    "buttonLabel": "Sync Platform 프로젝트 자세히 보기",
+    "visualLabel": "PLATFORM / OFFICIAL PRODUCT IMAGE",
+    "number": "01 / DIGITAL DENTISTRY",
+    "description": "치과와 기공소의 일상을 하나의 플랫폼으로.",
+    "tags": [
+      "REACT · TYPESCRIPT · NESTJS",
+      "MEMBERSHIP / BILLING / CLOUD",
+      "2022 — PRESENT"
+    ],
+    "screens": [
+      {
+        "src": "/assets/project-sync-official.jpg",
+        "alt": "DOF Sync 공식 제품 이미지. 프로젝트 요청부터 치과 스캔 데이터 관리까지의 실제 제품 화면",
+        "width": 950,
+        "height": 590
       }
-    });
-  },{threshold:0});
-  motionTargets.forEach(el=>{
-    if(!el.matches('.project.reveal'))el.classList.remove('is-visible');
-    motionObserver.observe(el);
-  });
-  document.body.classList.add('has-motion');
-}
-configureScrollMotion();
-reduceMotion.addEventListener('change',configureScrollMotion);
-document.addEventListener('focusin',event=>{
-  // Keyboard navigation must expose the focused control immediately.
-  event.target.closest('.text-reveal,.motion-title')?.classList.add('is-visible');
-  event.target.closest('.project.reveal')?.classList.add('is-visible');
-});
-let scrollPending=false;
-function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('.scroll-progress').style.transform=`scaleX(${max>0?scrollY/max:0})`;scrollPending=false;}
-addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(updateProgress);}},{passive:true});
-addEventListener('resize',updateProgress);updateProgress();
+    ]
+  },
+  "systems": {
+    "className": "project-systems",
+    "id": null,
+    "buttonLabel": "API and Data Systems 프로젝트 자세히 보기",
+    "visualLabel": "ENGINEERING / SYSTEM STUDY",
+    "number": "02 / BACKEND ENGINEERING",
+    "description": "API의 경계와 데이터의 일관성을 설계하다.",
+    "tags": [
+      "NESTJS · MYSQL · MONGODB · AWS S3",
+      "2026"
+    ],
+    "screens": [
+      {
+        "src": "/assets/project-systems.svg",
+        "alt": "API, 캐시, 데이터베이스 간 흐름을 표현한 설계 개념도",
+        "width": 900,
+        "height": 1050
+      }
+    ]
+  },
+  "cross-platform": {
+    "className": "project-mobile",
+    "id": "sync-mobile",
+    "buttonLabel": "DOF Sync Mobile 및 크로스플랫폼 프로젝트 자세히 보기",
+    "visualLabel": "DOF SYNC MOBILE / APP STORE SCREENS",
+    "number": "03 / WEB · MOBILE · DESKTOP",
+    "description": "DOF Sync Mobile · 프로젝트를 모바일에서도.",
+    "tags": [
+      "REACT NATIVE · ELECTRON · THREE.JS",
+      "2022 — 2024"
+    ],
+    "screens": [
+      {
+        "src": "/assets/dof-sync-mobile-board.png",
+        "alt": "DOF Sync Mobile 공식 앱스토어 스크린샷: 프로젝트 대시보드",
+        "width": 392,
+        "height": 696
+      },
+      {
+        "src": "/assets/dof-sync-mobile-viewer.png",
+        "alt": "DOF Sync Mobile 공식 앱스토어 스크린샷: 3D 파일 뷰어",
+        "width": 392,
+        "height": 696
+      }
+    ],
+    "link": {
+      "url": "https://apps.apple.com/kr/app/dof-sync-mobile/id6451134757",
+      "label": "VIEW ON APP STORE"
+    }
+  },
+  "operations": {
+    "className": "project-operations",
+    "id": null,
+    "buttonLabel": "Business and Operations 프로젝트 자세히 보기",
+    "visualLabel": "BUSINESS LOGIC / OPERATIONS STUDY",
+    "number": "04 / BUSINESS & OPERATIONS",
+    "description": "업무의 맥락을 이해하고, 운영의 다음을 준비하다.",
+    "tags": [
+      "ERP · AWS · CI/CD · TEAM LEAD",
+      "2014 — PRESENT"
+    ],
+    "screens": [
+      {
+        "src": "/assets/project-operations.svg",
+        "alt": "업무 시스템에서 배포와 운영까지 이어지는 프로세스 개념도",
+        "width": 1440,
+        "height": 700
+      }
+    ]
+  },
+  "madi": {
+    "className": "project-madi",
+    "id": "madi",
+    "buttonLabel": "마디 사이드 프로젝트 자세히 보기",
+    "visualLabel": "MADI v0.1.5 / APP SCREENSHOT",
+    "number": "05 / PERSONAL SIDE PROJECT",
+    "description": "듣고, 고치고, 연주하세요. 음악 연습을 위한 나만의 작업실.",
+    "tags": [
+      "REACT · TYPESCRIPT · PYTHON",
+      "CLOUDFLARE WORKERS · SUPABASE · R2",
+      "2026.10 — PRESENT"
+    ],
+    "screens": [
+      {
+        "src": "/assets/project-madi-v015.jpg",
+        "alt": "마디 v0.1.5의 실제 피아노 양손 악보·음표 편집·재생 화면",
+        "width": 1280,
+        "height": 720
+      }
+    ],
+    "sideProject": true,
+    "link": {
+      "url": "https://madi.springcotton.com/",
+      "label": "VISIT MADI"
+    }
+  }
+};
+
+export const projects = caseStudies.map(project => ({ ...project, card: projectCards[project.id] }));

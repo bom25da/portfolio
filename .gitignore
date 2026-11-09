@@ -5,3 +5,6 @@ __pycache__/
 .sites-checkout/
 *.tar.gz
 *.zip
+
+# Vite production output
+dist/

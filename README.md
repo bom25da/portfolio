@@ -2,29 +2,45 @@
 
 A static, responsive portfolio for https://springcotton.com.
 
-## Preview
+## Development
+
+Requires Node.js 22.12+ (Node 24 is supported).
 
 ```sh
-python3 -m http.server 4173 --directory dist --bind 127.0.0.1
+npm ci
+npm run dev
 ```
 
-`dist/` is the complete deployable website. No runtime dependencies or build step.
-The site includes keyboard-accessible menus and project dialogs, reduced-motion support,
-local fonts and original SVG artwork. Content is based on the supplied career handoff.
-Sync uses an official DOF product image; Sync Mobile uses official App Store screenshots; Madi uses an actual app screenshot. Other project illustrations are conceptual and labelled accordingly. Private resume details
-and internal service URLs are excluded.
+## Build and preview
 
-## Content
+```sh
+npm run build
+npm run preview -- --port 4173
+```
 
-- `dist/index.html`: page content and search metadata
-- `dist/style.css`: responsive visual system
-- `dist/app.js`: case studies and interactions
+React renders the portfolio and manages the menu, project dialogs, clipboard feedback, and local time. Vite serves the development app with React Fast Refresh and builds the production JavaScript/CSS bundles.
+
+The build also prerenders the React tree into `dist/index.html`. The client hydrates that same tree, preserving initial HTML content and search metadata with static hosting. A production React server is not required. `dist/` is generated and ignored by Git; edit `src/`, `public/`, and the root `index.html` instead.
+
+Keyboard-accessible native dialogs, repeatable scroll animation, reduced-motion support, local fonts, and SVG stars are retained. Sync uses an official DOF product image; Sync Mobile uses official App Store screenshots; Madi uses an actual app screenshot. Other project illustrations are conceptual and labelled accordingly.
+
+## Source layout
+
+- `src/App.jsx`: page composition and dialog state
+- `src/components/`: page sections, project cards/dialogs, shared title and SVG components
+- `src/data/projects.js`: project descriptions and card data
+- `src/data/technologies.js`: technology groups and icon paths
+- `src/hooks/useScrollMotion.js`: animation observer and cleanup
+- `src/styles.css`: responsive visual system
+- `public/`: original images, fonts, icons, sitemap, and hosting headers
+- `index.html`: Vite entry and search/social metadata
+- `scripts/build.mjs`: production build and static prerender
 - `scripts/generate-assets.py`: original procedural SVG illustrations
-- `.openai/hosting.json`: retained Sites project identity
+- `.openai/hosting.json`: retained Sites project identity and static output directory
 
-Fonts: Barlow Condensed and IBM Plex Mono, SIL Open Font License (see `dist/assets/OFL-*.txt`).
+Fonts: Barlow Condensed and IBM Plex Mono, SIL Open Font License (see `public/assets/OFL-*.txt`).
 
-Technology logos: [Devicon v2.17.0](https://github.com/devicons/devicon/tree/v2.17.0), MIT license (`dist/assets/icons/LICENSE`). The Madi image is a screenshot of the live application.
+Technology logos: [Devicon v2.17.0](https://github.com/devicons/devicon/tree/v2.17.0), MIT license (`public/assets/icons/LICENSE`). The Madi image is a screenshot of the live application.
 
 Sync image source: https://doflab.com/en/software/sync (`project_request.jpg`, © DOF). Madi was recaptured from the live v0.1.5 piano editor on 2026-11-09.
 

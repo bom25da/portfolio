@@ -4,7 +4,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const sharp = require(require.resolve('sharp', {paths:[process.cwd(), ...(process.argv[2] ? [process.argv[2]] : [])]}));
 const root = path.resolve(__dirname, '..');
-const assets = path.join(root, 'dist', 'assets');
+const assets = path.join(root, 'public', 'assets');
 const output = path.resolve(process.argv[3] || path.join(root, '.sites-runtime', 'knot-preview'));
 
 async function main(){
@@ -26,7 +26,7 @@ async function main(){
     icoHeader.writeUInt32LE(pngs[i].length,entry+8);icoHeader.writeUInt32LE(offset,entry+12);
     offset+=pngs[i].length;
   }
-  await fs.writeFile(path.join(root,'dist','favicon.ico'),Buffer.concat([icoHeader,...pngs.slice(0,4)]));
+  await fs.writeFile(path.join(root,'public','favicon.ico'),Buffer.concat([icoHeader,...pngs.slice(0,4)]));
   await sharp(path.join(assets,'knot-3d.svg'),{density:144}).resize(1040,1040).png().toFile(path.join(assets,'knot-3d-balanced.png'));
   const tube=await sharp(path.join(assets,'knot-3d-balanced.png')).resize(600,600).png().toBuffer();
   const flat=await sharp(path.join(assets,'knot-2d.svg'),{density:576}).resize(300,300).png().toBuffer();

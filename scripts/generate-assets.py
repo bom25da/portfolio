@@ -3,7 +3,7 @@ import math
 from pathlib import Path
 from knot_art import write_knot_assets
 
-OUT = Path(__file__).resolve().parents[1] / 'dist' / 'assets'
+OUT = Path(__file__).resolve().parents[1] / 'public' / 'assets'
 OUT.mkdir(parents=True, exist_ok=True)
 
 def svg(w, h, body, bg=None):
