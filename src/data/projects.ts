@@ -53,7 +53,7 @@ const caseStudies: CaseStudy[] = [
     period: '2014.03 — 현재', role: '업무 시스템 개발·유지보수, AWS 운영 개선 및 팀 개발 체계',
     stack: 'C#.NET, ASP.NET, MSSQL, Java, Spring Framework, React, AWS, Jenkins', image: 'project-operations.svg',
     blocks: [
-      ['FOUNDATION', '업무 규칙을 코드로 옮기는 경험', '문화일보에서 ERP와 연말정산 프로그램을 개발·유지보수했습니다. 세법과 업무 규칙의 변경을 프로그램과 데이터 처리에 반영하고 Crystal Reports 기반 리포트를 관리했습니다. Java·Spring Framework 기반 그룹웨어 개발과 React·Redux 기반 지국 판매 현황 웹페이지 개발도 수행했습니다.'],
+      ['FOUNDATION', '업무 규칙을 코드로 옮기는 경험', '문화일보에서 ERP와 연말정산 프로그램을 개발·유지보수하고, MSSQL을 사용한 DB 작업도 함께 수행했습니다. 세법과 업무 규칙의 변경을 프로그램과 데이터 처리에 반영하고 Crystal Reports 기반 리포트를 관리했습니다. Java·Spring Framework 기반 그룹웨어 개발과 React·Redux 기반 지국 판매 현황 웹페이지 개발도 수행했습니다.'],
       ['OPERATIONS', '서비스가 이어지는 환경 전환', '2026.10, 운영 서버 2대를 Amazon Linux 1에서 Amazon Linux 2023으로 무중단 이전했습니다. 운영 API의 오류를 분석·수정하고 릴리스별 DB 변경 자료와 실행 순서를 관리했습니다.'],
       ['SECURITY & QUALITY', '변경 이력과 검증을 남기기', '접근권한 부여·변경·말소 이력의 3년 보관 체계를 구축하고 관리자 로그인 reCAPTCHA의 서버 검증을 보완했습니다. 개발·검증 결과와 실제 운영 반영 단계를 구분해 기록했습니다.'],
       ['TEAM & AI', '반복 작업을 줄이고 판단에 집중', 'AI를 활용한 버그 수정 PR 생성과 병합 후 자동배포 흐름을 구축했습니다. 모노레포와 공통 모듈, 테스트 및 기술 공유를 통해 팀의 개발 체계를 정리했습니다. 생성된 코드도 기존 구조와 대조하고 테스트·리뷰를 거쳐 반영했습니다.']
