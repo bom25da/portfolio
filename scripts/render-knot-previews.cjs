@@ -27,8 +27,8 @@ async function main(){
     offset+=pngs[i].length;
   }
   await fs.writeFile(path.join(root,'dist','favicon.ico'),Buffer.concat([icoHeader,...pngs.slice(0,4)]));
-  await sharp(path.join(assets,'knot-3d.svg'),{density:144}).resize(1040,1040).png().toFile(path.join(assets,'knot-3d.png'));
-  const tube=await sharp(path.join(assets,'knot-3d.png')).resize(600,600).png().toBuffer();
+  await sharp(path.join(assets,'knot-3d.svg'),{density:144}).resize(1040,1040).png().toFile(path.join(assets,'knot-3d-balanced.png'));
+  const tube=await sharp(path.join(assets,'knot-3d-balanced.png')).resize(600,600).png().toBuffer();
   const flat=await sharp(path.join(assets,'knot-2d.svg'),{density:576}).resize(300,300).png().toBuffer();
   const largeIcon=await sharp(icon,{density:576}).resize(256,256).png().toBuffer();
   await fs.writeFile(path.join(output,'knot-3d.png'),tube);

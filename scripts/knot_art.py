@@ -17,10 +17,8 @@ def unit(v):
 
 
 def rotate(p):
-    x, y, z = p
-    y, z = y*math.cos(.65)-z*math.sin(.65), y*math.sin(.65)+z*math.cos(.65)
-    x, z = x*math.cos(-.3)+z*math.sin(-.3), -x*math.sin(-.3)+z*math.cos(-.3)
-    return (x*math.cos(-.35)-y*math.sin(-.35), x*math.sin(-.35)+y*math.cos(-.35), z)
+    # Match the favicon's frontal camera, retaining depth for crossings and light.
+    return flat_project(p)
 
 
 def curve(t):
@@ -34,7 +32,7 @@ def derivative(t):
 def smooth_tube():
     # The frame and its analytic normal are periodic, including at the closing seam.
     steps, sides, radius = 384, 128, .36
-    key, fill = unit((-.5, -.7, 1)), unit((.8, .15, .7))
+    key, fill = unit((-.3, -.45, 1.5)), unit((.6, .2, 1.1))
     half = unit(tuple(key[k]+(1 if k == 2 else 0) for k in range(3)))
     rows = []
     for i in range(steps):
@@ -48,6 +46,13 @@ def smooth_tube():
             n = tuple(u[k]*math.cos(angle)+v[k]*math.sin(angle) for k in range(3))
             row.append((rotate(tuple(c[k]+radius*n[k] for k in range(3))), rotate(n)))
         rows.append(row)
+    # Fit the complete surface, rather than assuming its center is the origin.
+    bounds = [(min(vertex[0][k] for row in rows for vertex in row),
+               max(vertex[0][k] for row in rows for vertex in row)) for k in [0, 1]]
+    scale = min(430/(high-low) for low, high in bounds)
+    tx = 260-scale*sum(bounds[0])/2
+    ty = 250-scale*sum(bounds[1])/2
+    ground_y = ty+scale*bounds[1][1]+14
     faces = []
     for i in range(steps):
         for j in range(sides):
@@ -60,12 +65,12 @@ def smooth_tube():
             specular = max(0, sum(n[k]*half[k] for k in range(3)))**42
             shade = min(250, round(31+158*diffuse**.85+22*reflected+58*specular))
             color = f'rgb({shade},{min(255,shade+2)},{shade})'
-            points = ' '.join(f'{260+c[0][0]*75:.2f},{238+c[0][1]*75:.2f}' for c in corners)
+            points = ' '.join(f'{tx+c[0][0]*scale:.2f},{ty+c[0][1]*scale:.2f}' for c in corners)
             # Matching subpixel strokes close rasterization cracks, without a visible mesh.
             polygon = f'<polygon points="{points}" fill="{color}" stroke="{color}" stroke-width=".65" stroke-linejoin="round"/>'
             faces.append((sum(c[0][2] for c in corners)/4, polygon))
     artwork = ''.join(face for _, face in sorted(faces, key=lambda f: f[0]))
-    return f'<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520"><title>One continuous knot</title><defs><filter id="ground" x="-60%" y="-200%" width="220%" height="500%"><feGaussianBlur stdDeviation="9"/></filter><filter id="surface" x="-2%" y="-2%" width="104%" height="104%"><feGaussianBlur stdDeviation=".3"/></filter></defs><ellipse cx="260" cy="446" rx="107" ry="10" fill="#25291f" opacity=".17" filter="url(#ground)"/><g filter="url(#surface)">{artwork}</g></svg>'
+    return f'<svg xmlns="http://www.w3.org/2000/svg" width="520" height="520" viewBox="0 0 520 520"><title>One continuous knot</title><defs><filter id="ground" x="-60%" y="-200%" width="220%" height="500%"><feGaussianBlur stdDeviation="9"/></filter><filter id="surface" x="-2%" y="-2%" width="104%" height="104%"><feGaussianBlur stdDeviation=".3"/></filter></defs><ellipse cx="260" cy="{ground_y:.2f}" rx="107" ry="8" fill="#25291f" opacity=".13" filter="url(#ground)"/><g filter="url(#surface)">{artwork}</g></svg>'
 
 
 def flat_project(p):
