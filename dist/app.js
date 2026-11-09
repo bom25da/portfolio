@@ -136,13 +136,51 @@ document.querySelector('#copy-email').addEventListener('click',async()=>{
 });
 
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)');
-if('IntersectionObserver' in window&&!reduceMotion.matches){
+const textSelectors=[
+  '.hero-intro > *', '.section-marker > span', '.statement-caption',
+  '.statement-copy > *', '.section-heading > p',
+  '.project-meta > div:first-child > *', '.project-tags > *', '.side-project-heading > *',
+  '.about-copy > *', '.experience-row > :not(.experience-arrow)',
+  '.capabilities > .row-label', '.capability-row > h3', '.stack-list > li',
+  '.contact-prelude', '.contact-bottom > *', '.footer-name', '.footer-bottom > *'
+];
+document.querySelectorAll(textSelectors.join(',')).forEach(el=>el.classList.add('text-reveal'));
+document.querySelectorAll('.hero-intro,.section-marker,.statement-copy,.project-meta > div:first-child,.project-tags,.side-project-heading,.about-copy,.experience-row,.stack-list,.contact-bottom,.footer-bottom').forEach(group=>{
+  [...group.children].filter(el=>el.classList.contains('text-reveal')).forEach((el,index)=>{
+    el.dataset.motionDelay=String(Math.min(index,4));
+  });
+});
+const motionTargets=[...document.querySelectorAll('.motion-title,.text-reveal,.project.reveal')];
+let motionObserver;
+function configureScrollMotion(){
+  motionObserver?.disconnect();
+  document.body.classList.remove('has-motion');
+  if(!('IntersectionObserver' in window)||reduceMotion.matches)return;
+  motionObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      const target=entry.target;
+      if(target.matches('.project.reveal')){
+        // Keep the large image cards stable after their first entrance.
+        if(entry.isIntersecting){target.classList.add('is-visible');motionObserver.unobserve(target);}
+      }else{
+        // Replay only after the complete text block has left the viewport.
+        target.classList.toggle('is-visible',entry.isIntersecting);
+      }
+    });
+  },{threshold:0});
+  motionTargets.forEach(el=>{
+    if(!el.matches('.project.reveal'))el.classList.remove('is-visible');
+    motionObserver.observe(el);
+  });
   document.body.classList.add('has-motion');
-  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}}),{threshold:.08,rootMargin:'0px 0px -25px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-  // Anchor navigation must reveal destination content even before the observer's next frame.
-  document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>{const section=document.querySelector(a.getAttribute('href'));section?.querySelectorAll('.reveal').forEach(el=>el.classList.add('is-visible'));}));
 }
+configureScrollMotion();
+reduceMotion.addEventListener('change',configureScrollMotion);
+document.addEventListener('focusin',event=>{
+  // Keyboard navigation must expose the focused control immediately.
+  event.target.closest('.text-reveal,.motion-title')?.classList.add('is-visible');
+  event.target.closest('.project.reveal')?.classList.add('is-visible');
+});
 let scrollPending=false;
 function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('.scroll-progress').style.transform=`scaleX(${max>0?scrollY/max:0})`;scrollPending=false;}
 addEventListener('scroll',()=>{if(!scrollPending){scrollPending=true;requestAnimationFrame(updateProgress);}},{passive:true});
