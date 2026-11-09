@@ -23,3 +23,5 @@ and internal service URLs are excluded.
 - `.openai/hosting.json`: retained Sites project identity
 
 Fonts: Barlow Condensed and IBM Plex Mono, SIL Open Font License (see `dist/assets/OFL-*.txt`).
+
+Technology logos: [Devicon v2.17.0](https://github.com/devicons/devicon/tree/v2.17.0), MIT license (`dist/assets/icons/LICENSE`). The Madi image is a screenshot of the live application.

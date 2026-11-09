@@ -56,7 +56,7 @@
 
     <section class="work-section" id="work" aria-labelledby="work-title">
       <div class="section-marker mono"><span>(03 / SELECTED WORK)</span><span>A FEW THINGS I'VE BUILT</span><span>SC / 03</span></div>
-      <div class="section-heading"><h2 class="display-title reveal" id="work-title">SELECTED<br><span class="indented">WORK<span class="small-count">(04)</span></span></h2><p>사용자 경험, 서비스 구조,<br>그리고 그 사이의 연결.</p></div>
+      <div class="section-heading"><h2 class="display-title reveal" id="work-title">SELECTED<br><span class="indented">WORK<span class="small-count">(05)</span></span></h2><p>사용자 경험, 서비스 구조,<br>그리고 그 사이의 연결.</p></div>
 
       <article class="project project-sync reveal">
         <button class="project-image" data-case="sync" aria-label="Sync Platform 프로젝트 자세히 보기"><img src="/assets/project-sync.svg" alt="Sync의 클라우드, 멤버십, 전자장부를 연결한 프로젝트 개념도" width="1440" height="900" loading="lazy"><span class="project-visual-label mono">PLATFORM / SYSTEM STUDY</span><span class="project-open" aria-hidden="true">↗</span></button>
@@ -78,7 +78,12 @@
         <button class="project-image" data-case="operations" aria-label="Business and Operations 프로젝트 자세히 보기"><img src="/assets/project-operations.svg" alt="업무 시스템에서 배포와 운영까지 이어지는 프로세스 개념도" width="1440" height="700" loading="lazy"><span class="project-visual-label mono">BUSINESS LOGIC / OPERATIONS STUDY</span><span class="project-open" aria-hidden="true">↗</span></button>
         <div class="project-meta"><div><span class="project-number mono">04 / BUSINESS & OPERATIONS</span><h3><button data-case="operations">BUILT TO KEEP RUNNING <span aria-hidden="true">↗</span></button></h3><p>업무의 맥락을 이해하고, 운영의 다음을 준비하다.</p></div><div class="project-tags mono"><span>ERP · AWS · CI/CD · TEAM LEAD</span><span>2014 — PRESENT</span></div></div>
       </article>
-      <p class="visual-note mono">PROJECT VISUALS ARE CONCEPTUAL REPRESENTATIONS OF THE WORK.<br><span>프로젝트 비주얼은 구현 경험을 바탕으로 재구성한 개념도입니다.</span></p>
+      <article class="project project-madi reveal" id="madi">
+        <div class="side-project-heading"><span class="mono">SIDE PROJECT / MADE FOR THE MUSIC</span><span class="mono">DESIGNED, BUILT &amp; MAINTAINED</span></div>
+        <button class="project-image" data-case="madi" aria-label="마디 사이드 프로젝트 자세히 보기"><img src="/assets/project-madi.png" alt="마디 앱의 실제 작업실 화면. 기타·베이스·피아노 악보 선택과 편집, 재생 도구" width="1280" height="720" loading="lazy"><span class="project-visual-label mono">MADI / LIVE APPLICATION</span><span class="project-open" aria-hidden="true">↗</span></button>
+        <div class="project-meta"><div><span class="project-number mono">05 / PERSONAL SIDE PROJECT</span><h3><button data-case="madi">MADI — MUSIC TO SCORE <span aria-hidden="true">↗</span></button></h3><p>듣고, 고치고, 연주하세요. 음악 연습을 위한 나만의 작업실.</p></div><div class="project-tags mono"><span>REACT · TYPESCRIPT · PYTHON</span><span>CLOUDFLARE WORKERS · SUPABASE · R2</span><span>2026.10 — PRESENT</span><a class="project-visit" href="https://madi.springcotton.com/" target="_blank" rel="noopener noreferrer">VISIT MADI <span aria-hidden="true">↗</span></a></div></div>
+      </article>
+      <p class="visual-note mono">WORK VISUALS: SYSTEM STUDIES / MADI: LIVE APPLICATION.<br><span>업무 프로젝트는 구현 경험을 재구성한 개념도, 마디는 실제 앱 화면입니다.</span></p>
     </section>
 
     <section class="about-section dark-section" id="about" aria-labelledby="about-title">
@@ -89,7 +94,42 @@
         <div class="experience-row reveal"><span class="mono">2022.07 — PRESENT</span><h3>DOF<span>디오에프</span></h3><p>웹팀 책임연구원 · 팀장<span>의료 B2B 플랫폼 / Full-stack Development</span></p><span class="experience-arrow" aria-hidden="true">↗</span></div>
         <div class="experience-row reveal"><span class="mono">2014.03 — 2022.07</span><h3>MUNHWA ILBO<span>문화일보</span></h3><p>개발팀<span>ERP · 그룹웨어 / Business Systems</span></p><span class="experience-arrow" aria-hidden="true">↗</span></div>
       </div>
-      <div class="capabilities"><p class="mono row-label">MY TOOLBOX / THE RIGHT TOOL FOR THE PROBLEM</p><div class="capability-row"><span class="mono">01 / INTERFACE</span><p>React / Next.js / TypeScript<br>React Native / Electron / Three.js</p></div><div class="capability-row"><span class="mono">02 / SYSTEMS</span><p>NestJS / Node.js / MySQL / MongoDB<br>Java · Spring Framework / C#.NET</p></div><div class="capability-row"><span class="mono">03 / DELIVERY</span><p>AWS / Jenkins / Docker / Turborepo<br>Jest / Vitest / Git / Jira · Confluence</p></div></div>
+      <div class="capabilities" aria-label="기술 스택"><p class="mono row-label">MY TOOLBOX / THE RIGHT TOOL FOR THE PROBLEM</p>
+        <div class="capability-row"><h3 class="mono" id="stack-group-0">01 / INTERFACE</h3><ul class="stack-list" aria-labelledby="stack-group-0">
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/react.svg" width="24" height="24" alt="" loading="lazy"></span><span>React</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/nextjs.svg" width="24" height="24" alt="" loading="lazy"></span><span>Next.js</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/typescript.svg" width="24" height="24" alt="" loading="lazy"></span><span>TypeScript</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/reactnative.svg" width="24" height="24" alt="" loading="lazy"></span><span>React Native</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/electron.svg" width="24" height="24" alt="" loading="lazy"></span><span>Electron</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/threejs.svg" width="24" height="24" alt="" loading="lazy"></span><span>Three.js</span></li>
+        </ul></div>
+        <div class="capability-row"><h3 class="mono" id="stack-group-1">02 / SYSTEMS</h3><ul class="stack-list" aria-labelledby="stack-group-1">
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/nestjs.svg" width="24" height="24" alt="" loading="lazy"></span><span>NestJS</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/nodejs.svg" width="24" height="24" alt="" loading="lazy"></span><span>Node.js</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/mysql.svg" width="24" height="24" alt="" loading="lazy"></span><span>MySQL</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/mongodb.svg" width="24" height="24" alt="" loading="lazy"></span><span>MongoDB</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/java.svg" width="24" height="24" alt="" loading="lazy"></span><span>Java</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/spring.svg" width="24" height="24" alt="" loading="lazy"></span><span>Spring Framework</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/csharp.svg" width="24" height="24" alt="" loading="lazy"></span><span>C#</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/dot-net.svg" width="24" height="24" alt="" loading="lazy"></span><span>.NET</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/python.svg" width="24" height="24" alt="" loading="lazy"></span><span>Python</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/fastapi.svg" width="24" height="24" alt="" loading="lazy"></span><span>FastAPI</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/postgresql.svg" width="24" height="24" alt="" loading="lazy"></span><span>PostgreSQL</span></li>
+        </ul></div>
+        <div class="capability-row"><h3 class="mono" id="stack-group-2">03 / DELIVERY</h3><ul class="stack-list" aria-labelledby="stack-group-2">
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/amazonwebservices.svg" width="24" height="24" alt="" loading="lazy"></span><span>AWS</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/cloudflare.svg" width="24" height="24" alt="" loading="lazy"></span><span>Cloudflare Workers</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/supabase.svg" width="24" height="24" alt="" loading="lazy"></span><span>Supabase</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/jenkins.svg" width="24" height="24" alt="" loading="lazy"></span><span>Jenkins</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/docker.svg" width="24" height="24" alt="" loading="lazy"></span><span>Docker</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/turborepo.svg" width="24" height="24" alt="" loading="lazy"></span><span>Turborepo</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/jest.svg" width="24" height="24" alt="" loading="lazy"></span><span>Jest</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/vitest.svg" width="24" height="24" alt="" loading="lazy"></span><span>Vitest</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/git.svg" width="24" height="24" alt="" loading="lazy"></span><span>Git</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/jira.svg" width="24" height="24" alt="" loading="lazy"></span><span>Jira</span></li>
+          <li><span class="stack-icon-frame" aria-hidden="true"><img class="stack-icon" src="/assets/icons/confluence.svg" width="24" height="24" alt="" loading="lazy"></span><span>Confluence</span></li>
+        </ul></div>
+      </div>
       <div class="about-footnote mono"><span>B.S. COMPUTER ENGINEERING / KOOKMIN UNIVERSITY</span><span>ENGINEER INFORMATION PROCESSING / 2013</span></div>
     </section>
 

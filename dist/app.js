@@ -52,6 +52,20 @@ const cases = [
       ['TEAM & AI', '반복 작업을 줄이고 판단에 집중', 'AI를 활용한 버그 수정 PR 생성과 병합 후 자동배포 흐름을 구축했습니다. 모노레포와 공통 모듈, 테스트 및 기술 공유를 통해 팀의 개발 체계를 정리했습니다. 생성된 코드도 기존 구조와 대조하고 테스트·리뷰를 거쳐 반영했습니다.']
     ],
     scope: 'ERP·그룹웨어는 문화일보 경력, AWS·보안 및 AI 개발 흐름은 디오에프 경력입니다. Spring Framework 경험이며 Spring Boot 경험으로 표기하지 않았습니다.'
+  },
+  {
+    id: 'madi', title: 'MADI — MUSIC TO SCORE', category: 'PERSONAL SIDE PROJECT / MUSIC & TECHNOLOGY',
+    subtitle: '듣고, 고치고, 연주하세요. 음악 연습을 위한 나만의 작업실.',
+    period: '2026.10 — 현재', role: '개인 사이드 프로젝트 · 기획, 웹·서버 개발, AI 채보 파이프라인 연동 및 운영',
+    stack: 'React, TypeScript, Vite, Python, FastAPI, Cloudflare Workers, Supabase, R2, alphaTab',
+    image: 'project-madi.png', imageNote: '실제 운영 중인 마디 앱의 작업실 화면입니다.', url: 'https://madi.springcotton.com/',
+    blocks: [
+      ['WHY I BUILT IT', '음악을 듣는 곳에서, 연습하는 곳으로', '곡을 듣고 악보를 확인하고 필요한 부분을 고치는 일을 하나의 작업실에 모았습니다. 기타·베이스 TAB과 피아노 악보를 다루고, 그룹별로 곡을 정리해 원곡과 함께 연습할 수 있는 웹 앱입니다. 직접 사용하는 도구를 만들며 기획부터 개발·배포·운영까지 이어가고 있습니다.'],
+      ['PLAY & EDIT', '악보와 소리가 함께 움직이는 편집 경험', '악보의 음높이·길이·운지를 수정하고 원곡·분리음·악보 미리듣기를 비교할 수 있도록 구현했습니다. 마디 단위 구간 반복, 실행 취소·다시 실행, 수정 이력, PDF·MusicXML·MIDI·프로젝트 ZIP 내보내기를 연결했습니다. 이미지 악보에는 코드 인식·수정·조옮김과 메모 기능을 더했습니다.'],
+      ['AI WORKFLOW', '로컬 추론과 클라우드 작업실의 연결', 'MuScriptor 채보와 Demucs 음원 분리를 별도 Python 프로세스에서 처리하고, 웹 작업실은 Cloudflare Workers·Supabase·R2로 운영하는 구조를 구성했습니다. 무거운 모델 작업과 웹의 재생·편집·저장을 나누고, 완료된 결과를 이어서 다듬을 수 있도록 연결했습니다.'],
+      ['MADE FOR PRACTICE', '실제 연주 환경에서 필요한 기능', 'PWA 설치와 모바일·태블릿 화면을 지원하고, 블루투스 키보드 모드 페달로 악보를 넘길 수 있도록 구현했습니다. 느린 연결에서의 음원 재생 유지, 악보 이미지 캐시와 다음 페이지 미리 받기, 수정 버전 비교를 통한 저장 충돌 처리도 보완했습니다.']
+    ],
+    scope: 'AI 채보는 사용자가 듣고 수정하는 초안으로 제공합니다. 새 채보 작업은 Mac 처리기가 연결되어 있어야 실행되며, 공개 웹 작업실의 악보 보기·재생·편집과 분리해 운영합니다.'
   }
 ];
 
@@ -66,7 +80,7 @@ let activeCase = 0;
 function showCase(index) {
   activeCase = (index + cases.length) % cases.length;
   const item = cases[activeCase];
-  document.querySelector('#case-index').textContent = `PROJECT / 0${activeCase + 1} — 04`;
+  document.querySelector('#case-index').textContent = `PROJECT / ${String(activeCase + 1).padStart(2, '0')} — ${String(cases.length).padStart(2, '0')}`;
   const container = document.querySelector('#case-content');
   container.replaceChildren();
   const header = document.createElement('header');
@@ -88,9 +102,13 @@ function showCase(index) {
     const content=document.createElement('p');content.textContent=value;
     cell.append(tag,content);facts.append(cell);
   });
-  header.append(eyebrow,title,subtitle,facts);
-  const image=document.createElement('img');image.className='case-image';image.src=`/assets/${item.image}`;image.alt=`${item.title} 프로젝트 개념도`;
-  const note=document.createElement('p');note.className='case-image-note';note.textContent='프로젝트 내용을 재구성한 개념도 · 실제 제품 화면이 아닙니다.';
+  header.append(eyebrow,title,subtitle);
+  if(item.url){
+    const visit=document.createElement('a');visit.className='text-link mono case-visit';visit.href=item.url;visit.target='_blank';visit.rel='noopener noreferrer';visit.textContent='VISIT MADI ↗';header.append(visit);
+  }
+  header.append(facts);
+  const image=document.createElement('img');image.className=item.url?'case-image case-image-app':'case-image';image.src=`/assets/${item.image}`;image.alt=item.url?`${item.title} 실제 앱 작업실 화면`:`${item.title} 프로젝트 개념도`;
+  const note=document.createElement('p');note.className='case-image-note';note.textContent=item.imageNote || '프로젝트 내용을 재구성한 개념도 · 실제 제품 화면이 아닙니다.';
   container.append(header,image,note);
   item.blocks.forEach(([label,heading,body])=>{
     const section=document.createElement('section');section.className='case-block';
