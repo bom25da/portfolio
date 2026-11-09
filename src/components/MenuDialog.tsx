@@ -1,12 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { Asterisk } from './Asterisk';
 
+interface MenuDialogProps { open: boolean; onClose: () => void; }
+
 const links = [['home', 'HOME'], ['work', 'WORK'], ['about', 'ABOUT'], ['contact', 'CONTACT']];
 
-export function MenuDialog({ open, onClose }) {
-  const dialogRef = useRef(null);
+export function MenuDialog({ open, onClose }: MenuDialogProps) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
   useEffect(() => {
     const dialog = dialogRef.current;
+    if (!dialog) return;
     if (open && !dialog.open) dialog.showModal();
     else if (!open && dialog.open) dialog.close();
   }, [open]);

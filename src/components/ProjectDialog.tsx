@@ -1,7 +1,15 @@
 import { useEffect, useRef } from 'react';
 import { projects } from '../data/projects';
+import type { MouseEvent } from 'react';
+import type { PortfolioProject, ProjectDirection } from '../types/portfolio';
 
-function ProjectVisual({ project }) {
+interface ProjectDialogProps {
+  activeIndex: number | null;
+  onClose: () => void;
+  onNavigate: (direction: ProjectDirection) => void;
+}
+
+function ProjectVisual({ project }: { project: PortfolioProject }) {
   if (project.images) {
     return (
       <div className="case-mobile-gallery">
@@ -13,32 +21,33 @@ function ProjectVisual({ project }) {
   return <img className={'case-image' + (contain ? ' case-image-app' : '')} src={'/assets/' + project.image} alt={project.imageAlt || project.title + ' 프로젝트 개념도'} />;
 }
 
-export function ProjectDialog({ activeIndex, onClose, onNavigate }) {
-  const dialogRef = useRef(null);
-  const closeRef = useRef(null);
-  const project = activeIndex === null ? null : projects[activeIndex];
+export function ProjectDialog({ activeIndex, onClose, onNavigate }: ProjectDialogProps) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const project = activeIndex === null ? null : projects[activeIndex] ?? null;
 
   useEffect(() => {
     const dialog = dialogRef.current;
-    if (activeIndex === null) {
+    if (!dialog) return;
+    if (!project) {
       if (dialog.open) dialog.close();
       return;
     }
     if (!dialog.open) dialog.showModal();
     dialog.scrollTop = 0;
-    closeRef.current.focus({ preventScroll: true });
-  }, [activeIndex]);
+    closeRef.current?.focus({ preventScroll: true });
+  }, [activeIndex, project]);
 
-  function closeOnBackdrop(event) {
-    if (event.target !== dialogRef.current) return;
-    const bounds = dialogRef.current.getBoundingClientRect();
+  function closeOnBackdrop(event: MouseEvent<HTMLDialogElement>) {
+    if (event.target !== event.currentTarget) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) onClose();
   }
 
   return (
     <dialog ref={dialogRef} id="case-dialog" className="case-dialog" aria-labelledby="case-title" onClose={onClose} onCancel={onClose} onClick={closeOnBackdrop}>
       <div className="case-topbar">
-        <span className="mono" id="case-index">{project && 'PROJECT / ' + String(activeIndex + 1).padStart(2, '0') + ' — ' + String(projects.length).padStart(2, '0')}</span>
+        <span className="mono" id="case-index">{project && activeIndex !== null && 'PROJECT / ' + String(activeIndex + 1).padStart(2, '0') + ' — ' + String(projects.length).padStart(2, '0')}</span>
         <button ref={closeRef} className="mono dialog-close" id="case-close" aria-label="프로젝트 상세 닫기" onClick={onClose}>CLOSE ×</button>
       </div>
       <div id="case-content">

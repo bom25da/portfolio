@@ -11,18 +11,19 @@ import { ProjectDialog } from './components/ProjectDialog';
 import { ScrollProgress } from './components/ScrollProgress';
 import { useScrollMotion } from './hooks/useScrollMotion';
 import { projects } from './data/projects';
+import type { ProjectDirection, ProjectId } from './types/portfolio';
 
 export function App() {
-  const pageRef = useRef(null);
+  const pageRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [activeCase, setActiveCase] = useState(null);
+  const [activeCase, setActiveCase] = useState<number | null>(null);
   useScrollMotion(pageRef);
 
-  const openCase = useCallback(id => {
+  const openCase = useCallback((id: ProjectId) => {
     const index = projects.findIndex(project => project.id === id);
     if (index >= 0) setActiveCase(index);
   }, []);
-  const navigateCase = useCallback(direction => {
+  const navigateCase = useCallback((direction: ProjectDirection) => {
     setActiveCase(index => index === null ? null : (index + direction + projects.length) % projects.length);
   }, []);
   const closeCase = useCallback(() => setActiveCase(null), []);

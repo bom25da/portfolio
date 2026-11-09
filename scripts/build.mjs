@@ -8,7 +8,7 @@ await build();
 const serverOutput = resolve('.sites-runtime/prerender');
 await build({
   build: {
-    ssr: 'src/entry-server.jsx',
+    ssr: 'src/entry-server.tsx',
     outDir: serverOutput,
     copyPublicDir: false,
     emptyOutDir: true,

@@ -1,6 +1,8 @@
 import { Asterisk } from './Asterisk';
 
-export function Header({ onMenuOpen }) {
+interface HeaderProps { onMenuOpen: () => void; }
+
+export function Header({ onMenuOpen }: HeaderProps) {
   return (
     <header className="site-header">
       <a className="wordmark" href="#home" aria-label="권경원 포트폴리오 처음으로">

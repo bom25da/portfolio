@@ -1,12 +1,14 @@
 import { useEffect, useRef } from 'react';
 
 export function ScrollProgress() {
-  const progressRef = useRef(null);
+  const progressRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    let frame = null;
+    const progress = progressRef.current;
+    if (!progress) return;
+    let frame: number | null = null;
     const update = () => {
       const max = document.documentElement.scrollHeight - innerHeight;
-      progressRef.current.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
+      progress.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
       frame = null;
     };
     const schedule = () => { if (frame === null) frame = requestAnimationFrame(update); };

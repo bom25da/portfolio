@@ -1,4 +1,6 @@
-export const technologyGroups = [
+import type { TechnologyGroup } from '../types/portfolio';
+
+export const technologyGroups: readonly TechnologyGroup[] = [
   {
     "id": "stack-group-0",
     "title": "01 / INTERFACE",

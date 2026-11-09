@@ -1,4 +1,6 @@
-export function Asterisk({ className }) {
+interface AsteriskProps { className?: string; }
+
+export function Asterisk({ className }: AsteriskProps) {
   return (
     <span className={className} aria-hidden="true">
       <svg className="asterisk-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">

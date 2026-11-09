@@ -1,4 +1,6 @@
-const caseStudies = [
+import type { CaseStudy, PortfolioProject, ProjectCardData, ProjectId } from '../types/portfolio';
+
+const caseStudies: CaseStudy[] = [
   {
     id: 'sync', title: 'SYNC PLATFORM', category: 'DIGITAL DENTISTRY / B2B PLATFORM',
     subtitle: '치과와 기공소의 업무가 자연스럽게 이어지는 플랫폼.',
@@ -74,7 +76,7 @@ const caseStudies = [
   }
 ];
 
-const projectCards = {
+const projectCards: Record<ProjectId, ProjectCardData> = {
   "sync": {
     "className": "project-sync",
     "id": null,
@@ -194,4 +196,4 @@ const projectCards = {
   }
 };
 
-export const projects = caseStudies.map(project => ({ ...project, card: projectCards[project.id] }));
+export const projects: PortfolioProject[] = caseStudies.map(project => ({ ...project, card: projectCards[project.id] }));

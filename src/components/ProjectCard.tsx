@@ -1,4 +1,8 @@
-export function ProjectCard({ project, onOpen }) {
+import type { PortfolioProject, ProjectId } from '../types/portfolio';
+
+interface ProjectCardProps { project: PortfolioProject; onOpen: (id: ProjectId) => void; }
+
+export function ProjectCard({ project, onOpen }: ProjectCardProps) {
   const { card } = project;
   const open = () => onOpen(project.id);
   const images = card.screens.map(image => <img key={image.src} {...image} loading="lazy" />);

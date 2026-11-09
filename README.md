@@ -14,11 +14,14 @@ npm run dev
 ## Build and preview
 
 ```sh
+npm run typecheck
 npm run build
 npm run preview -- --port 4173
 ```
 
-React renders the portfolio and manages the menu, project dialogs, clipboard feedback, and local time. Vite serves the development app with React Fast Refresh and builds the production JavaScript/CSS bundles.
+React + TypeScript renders the portfolio and manages the menu, project dialogs, clipboard feedback, and local time. Vite serves the development app with React Fast Refresh and builds the production JavaScript/CSS bundles.
+
+Every production build runs the TypeScript compiler with no emit first. `npm run typecheck` runs that check independently.
 
 The build also prerenders the React tree into `dist/index.html`. The client hydrates that same tree, preserving initial HTML content and search metadata with static hosting. A production React server is not required. `dist/` is generated and ignored by Git; edit `src/`, `public/`, and the root `index.html` instead.
 
@@ -26,12 +29,15 @@ Keyboard-accessible native dialogs, repeatable scroll animation, reduced-motion 
 
 ## Source layout
 
-- `src/App.jsx`: page composition and dialog state
+- `src/App.tsx`: page composition and dialog state
 - `src/components/`: page sections, project cards/dialogs, shared title and SVG components
-- `src/data/projects.js`: project descriptions and card data
-- `src/data/technologies.js`: technology groups and icon paths
-- `src/hooks/useScrollMotion.js`: animation observer and cleanup
+- `src/data/projects.ts`: project descriptions and card data
+- `src/data/technologies.ts`: technology groups and icon paths
+- `src/hooks/useScrollMotion.ts`: animation observer and cleanup
+- `src/types/portfolio.ts`: project, card, navigation, and technology types
 - `src/styles.css`: responsive visual system
+- `tsconfig.json`: strict type checking, including unchecked indexed access
+- `vite.config.ts`: Vite and React configuration
 - `public/`: original images, fonts, icons, sitemap, and hosting headers
 - `index.html`: Vite entry and search/social metadata
 - `scripts/build.mjs`: production build and static prerender
