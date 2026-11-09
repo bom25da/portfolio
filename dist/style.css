@@ -38,3 +38,8 @@ dialog{border:0;color:var(--ink);background:var(--paper);padding:0}dialog::backd
 @media(max-width:680px){.capabilities{display:block}.capabilities>.row-label{margin-bottom:22px}.capability-row{display:block;padding:22px 0 27px}.capability-row>h3{font-size:9px}.stack-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px;margin-top:20px}.stack-list>li{font-size:11px;gap:10px}.stack-icon-frame{width:32px;height:32px;flex-basis:32px}.stack-icon{width:22px;height:22px}.side-project-heading{margin-top:45px;gap:15px}.side-project-heading>.mono{font-size:7px}.side-project-heading>span:last-child{display:none}.project-madi .project-image{padding:12% 4%}.project-madi .project-image>img{height:auto;object-fit:contain}.project-madi h3{font-size:29px}.project-visit{font-size:9px;align-self:start;gap:35px}.case-visit{font-size:10px}}
 
 .case-image-app{object-fit:contain;background:#d7dfd3}
+
+/* Product imagery and app captures keep their original proportions. */
+.project-sync .project-image{background:#fff;padding:4%}
+.project-sync .project-image img{height:auto;object-fit:contain}
+.image-source-link{text-decoration:underline;text-underline-offset:3px;margin-left:5px}

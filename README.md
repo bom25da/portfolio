@@ -11,7 +11,7 @@ python3 -m http.server 4173 --directory dist --bind 127.0.0.1
 `dist/` is the complete deployable website. No runtime dependencies or build step.
 The site includes keyboard-accessible menus and project dialogs, reduced-motion support,
 local fonts and original SVG artwork. Content is based on the supplied career handoff.
-Project illustrations are conceptual, and are labelled accordingly. Private resume details
+Sync uses an official DOF product image; Madi uses an actual app screenshot. Other project illustrations are conceptual and labelled accordingly. Private resume details
 and internal service URLs are excluded.
 
 ## Content
@@ -25,3 +25,5 @@ and internal service URLs are excluded.
 Fonts: Barlow Condensed and IBM Plex Mono, SIL Open Font License (see `dist/assets/OFL-*.txt`).
 
 Technology logos: [Devicon v2.17.0](https://github.com/devicons/devicon/tree/v2.17.0), MIT license (`dist/assets/icons/LICENSE`). The Madi image is a screenshot of the live application.
+
+Sync image source: https://doflab.com/en/software/sync (`project_request.jpg`, © DOF). Madi was recaptured from the live v0.1.5 piano editor on 2026-11-09.

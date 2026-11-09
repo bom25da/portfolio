@@ -5,7 +5,7 @@ const cases = [
     id: 'sync', title: 'SYNC PLATFORM', category: 'DIGITAL DENTISTRY / B2B PLATFORM',
     subtitle: '치과와 기공소의 업무가 자연스럽게 이어지는 플랫폼.',
     period: '2022.07 — 현재 · 주요 기능별 참여 기간 상이', role: '웹팀 책임연구원 · 팀장 / 프론트엔드 및 서버 기능 개발',
-    stack: 'React, TypeScript, Vite, React Query, Zustand, NestJS, Turborepo', image: 'project-sync.svg',
+    stack: 'React, TypeScript, Vite, React Query, Zustand, NestJS, Turborepo', image: 'project-sync-official.jpg', imageFit: 'contain', imageAlt: 'DOF Sync 공식 프로젝트 관리 제품 이미지', imageNote: 'DOF Sync 공식 소개 페이지에서 제공하는 제품 이미지입니다.', imageSource: 'https://doflab.com/en/software/sync',
     blocks: [
       ['CONTEXT', '현장의 업무를 제품 안으로', 'Sync는 치과·기공소·보철물 디자이너의 업무를 연결하는 플랫폼입니다. 파일과 프로젝트를 관리하는 흐름 위에 멤버십 결제와 전자장부 기능을 더하며, 사용자의 일상적인 업무가 서비스 안에서 이어지도록 개발했습니다.'],
       ['MEMBERSHIP', '용량과 결제의 연결', '2025.10–2026.03, 클라우드 사용 용량을 업그레이드하는 멤버십 결제의 프론트엔드 기능을 개발했습니다. 이용 용량과 권한, 결제의 사용자 흐름을 연결하는 기능에 참여했으며 프로젝트 기여도는 80%입니다.'],
@@ -58,7 +58,7 @@ const cases = [
     subtitle: '듣고, 고치고, 연주하세요. 음악 연습을 위한 나만의 작업실.',
     period: '2026.10 — 현재', role: '개인 사이드 프로젝트 · 기획, 웹·서버 개발, AI 채보 파이프라인 연동 및 운영',
     stack: 'React, TypeScript, Vite, Python, FastAPI, Cloudflare Workers, Supabase, R2, alphaTab',
-    image: 'project-madi.png', imageNote: '실제 운영 중인 마디 앱의 작업실 화면입니다.', url: 'https://madi.springcotton.com/',
+    image: 'project-madi-v015.jpg', imageAlt: '마디 v0.1.5 피아노 양손 악보 및 음표 편집 화면', imageNote: '현재 운영 중인 마디 v0.1.5의 실제 피아노 악보 편집 화면입니다.', url: 'https://madi.springcotton.com/',
     blocks: [
       ['WHY I BUILT IT', '음악을 듣는 곳에서, 연습하는 곳으로', '곡을 듣고 악보를 확인하고 필요한 부분을 고치는 일을 하나의 작업실에 모았습니다. 기타·베이스 TAB과 피아노 악보를 다루고, 그룹별로 곡을 정리해 원곡과 함께 연습할 수 있는 웹 앱입니다. 직접 사용하는 도구를 만들며 기획부터 개발·배포·운영까지 이어가고 있습니다.'],
       ['PLAY & EDIT', '악보와 소리가 함께 움직이는 편집 경험', '악보의 음높이·길이·운지를 수정하고 원곡·분리음·악보 미리듣기를 비교할 수 있도록 구현했습니다. 마디 단위 구간 반복, 실행 취소·다시 실행, 수정 이력, PDF·MusicXML·MIDI·프로젝트 ZIP 내보내기를 연결했습니다. 이미지 악보에는 코드 인식·수정·조옮김과 메모 기능을 더했습니다.'],
@@ -107,8 +107,9 @@ function showCase(index) {
     const visit=document.createElement('a');visit.className='text-link mono case-visit';visit.href=item.url;visit.target='_blank';visit.rel='noopener noreferrer';visit.textContent='VISIT MADI ↗';header.append(visit);
   }
   header.append(facts);
-  const image=document.createElement('img');image.className=item.url?'case-image case-image-app':'case-image';image.src=`/assets/${item.image}`;image.alt=item.url?`${item.title} 실제 앱 작업실 화면`:`${item.title} 프로젝트 개념도`;
+  const image=document.createElement('img');image.className=(item.url||item.imageFit==='contain')?'case-image case-image-app':'case-image';image.src=`/assets/${item.image}`;image.alt=item.imageAlt||(item.url?`${item.title} 실제 앱 작업실 화면`:`${item.title} 프로젝트 개념도`);
   const note=document.createElement('p');note.className='case-image-note';note.textContent=item.imageNote || '프로젝트 내용을 재구성한 개념도 · 실제 제품 화면이 아닙니다.';
+  if(item.imageSource){const source=document.createElement('a');source.href=item.imageSource;source.target='_blank';source.rel='noopener noreferrer';source.textContent='DOF 공식 페이지 ↗';source.className='image-source-link';note.append(document.createTextNode(' '),source);}
   container.append(header,image,note);
   item.blocks.forEach(([label,heading,body])=>{
     const section=document.createElement('section');section.className='case-block';
