@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1050" viewBox="0 0 900 1050">
+  <title>MotionApp milling machine integration concept</title>
+  <desc>A machine interface connects NC files and controls to live progress, alarms and homing status.</desc>
+  <defs>
+    <linearGradient id="back" x2="1" y2="1"><stop stop-color="#273137"/><stop offset="1" stop-color="#182025"/></linearGradient>
+    <linearGradient id="steel" x2="1" y2="1"><stop stop-color="#b9c1bc"/><stop offset=".5" stop-color="#87948e"/><stop offset="1" stop-color="#697a72"/></linearGradient>
+    <linearGradient id="glass" x2=".8" y2="1"><stop stop-color="#43554f"/><stop offset="1" stop-color="#24332f"/></linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#a7c2b3" stroke-opacity=".06"/></pattern>
+    <filter id="shadow" x="-40%" y="-100%" width="180%" height="300%"><feGaussianBlur stdDeviation="20"/></filter>
+  </defs>
+  <path fill="url(#back)" d="M0 0H900V1050H0Z"/><path fill="url(#grid)" d="M0 0H900V1050H0Z"/>
+  <g fill="#d7e0d4" font-family="Arial,sans-serif" font-size="59" font-weight="700" letter-spacing="-2.5"><text x="65" y="150">FROM CODE</text><text x="65" y="217">TO MOTION.</text></g>
+  <text x="68" y="263" fill="#96ad9e" font-family="monospace" font-size="13">DEVICE STATE / APP CONTROL</text>
+  <ellipse cx="450" cy="813" rx="300" ry="30" fill="#050c09" opacity=".65" filter="url(#shadow)"/>
+  <path d="M169 384 638 342 755 407 290 452Z" fill="#b1bbb4" stroke="#d0d7d0" stroke-opacity=".5"/>
+  <path d="M638 342 755 407V759L638 806Z" fill="#596d62" stroke="#9cac9f"/>
+  <path d="M169 384 638 342V806L169 830Z" fill="url(#steel)" stroke="#d0d7d0" stroke-opacity=".5"/>
+  <path d="M205 423 505 397V726L205 742Z" fill="url(#glass)" stroke="#d1d9cf" stroke-opacity=".7"/>
+  <path d="M225 445 485 424V699L225 712Z" fill="#1b2924"/>
+  <path d="M265 471 432 459V485L265 498Z" fill="#84998a"/>
+  <path d="M328 490 372 487V568L328 571Z" fill="#a5b3a6"/>
+  <path d="M338 570 362 568V602L338 604Z" fill="#d1d9ce"/>
+  <path d="M348 603V638" stroke="#b2cbb8" stroke-width="2"/>
+  <ellipse cx="353" cy="665" rx="80" ry="16" fill="#869b8b"/>
+  <path d="M273 665V681C273 702 433 702 433 681V665" fill="#637b6b"/>
+  <path d="M273 665C273 686 433 686 433 665" fill="none" stroke="#b8cbbb"/>
+  <path d="M540 411 608 405V575L540 579Z" fill="#253c31" stroke="#c0cfc1"/>
+  <g fill="#b2c9b3"><path d="M552 432 592 429V434L552 437ZM552 453 584 451V456L552 458ZM552 474 592 471V476L552 479Z"/><circle cx="574" cy="537" r="13" fill="none" stroke="#a4c4a5"/><path d="m570 531 10 6-10 6Z"/></g>
+  <circle cx="574" cy="620" r="15" fill="#ad7e5c" stroke="#d1b096"/>
+  <path d="M197 771 610 749" stroke="#576d5d"/>
+  <path d="M246 833V850M584 814V833" stroke="#728675" stroke-width="12"/>
+  <g fill="#a4bca8" font-family="monospace" font-size="11"><text x="70" y="346">NC / CONTROL</text><text x="647" y="306">LIVE EVENTS</text></g>
+  <g stroke="#8cae96" fill="none" stroke-width="1" stroke-dasharray="4 6"><path d="M146 355V375L275 404"/><path d="M702 319V342L598 465"/></g>
+  <path d="M65 900H835" stroke="#536c5e"/>
+  <g fill="#b3c8b7" font-family="monospace" font-size="13"><text x="67" y="935">NC FILES</text><text x="328" y="935">MACHINE API</text><text x="652" y="935">LIVE STATUS</text></g>
+  <g fill="none" stroke="#7a9c86" stroke-width="1.5"><path d="M166 930H290m-9-6 9 6-9 6M455 930H617m-9-6 9 6-9 6"/></g>
+  <text x="67" y="998" fill="#819d89" font-family="monospace" font-size="10" letter-spacing="1">INTEGRATION CONCEPT / NOT A PRODUCT SCREENSHOT</text>
+</svg>

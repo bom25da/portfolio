@@ -1,4 +1,4 @@
-export type ProjectId = 'sync' | 'systems' | 'cross-platform' | 'operations' | 'madi';
+export type ProjectId = 'sync' | 'systems' | 'cross-platform' | 'offline' | 'motionapp' | 'operations' | 'madi';
 export type ProjectDirection = -1 | 1;
 
 interface ProjectFields {

@@ -48,6 +48,38 @@ const caseStudies: CaseStudy[] = [
     scope: '프로젝트마다 참여 기간과 역할이 다릅니다. 의료 데이터 연동 경험은 의료기기 인허가나 의료 AI 모델 개발 경험을 의미하지 않습니다.'
   },
   {
+    id: 'offline', title: 'SYNC OFFLINE', category: 'DESKTOP / OFFLINE WORKFLOW',
+    subtitle: '인터넷 연결이 끊겨도, 현장의 작업은 계속되도록.',
+    period: '2025.08 — 2025.09 · 이후 로그인·라이브러리 기능 개선',
+    role: 'React 클라이언트와 Electron의 오프라인 모드·로그인·IPC 및 동기화 UI 구현',
+    stack: 'React, TypeScript, Vite, Electron, IPC, SQLite 연동',
+    image: 'project-offline.svg', imageAlt: '온라인 HTTP와 오프라인 Electron IPC·로컬 저장소의 연결을 표현한 개념도',
+    imageNote: '오프라인 모드의 통신 경로를 재구성한 개념도입니다. 실제 제품 화면은 아닙니다.',
+    blocks: [
+      ['MODE SWITCHING', '연결 상태와 작업 모드를 분리', '사용자가 선택한 온라인·오프라인 모드와 실제 네트워크 연결 상태를 분리했습니다. Electron에서 서버 화면과 로컬 화면을 전환하고, 전환 시 진행 중 작업을 초기화하면서 선택 언어와 화면 배율을 유지하도록 구현했습니다.'],
+      ['LOCAL WORK', '같은 화면에서 로컬 작업까지', 'React·TypeScript 코드를 온라인과 오프라인 빌드에서 함께 사용하고, 서비스 계층에서 HTTP API와 Electron IPC를 분기했습니다. SQLite 기반 로컬 처리에 환자 조회·생성·수정·삭제와 프로젝트 생성·수정을 연결했습니다.'],
+      ['SIGN IN', '오프라인 로그인부터 만료 안내까지', '오프라인 로그인·자동로그인과 비밀번호 설정·재설정 흐름을 구현했습니다. 로그인 이력이 없는 경우의 온라인 전환, 오프라인 사용 기간 만료 안내와 종료 처리까지 사용자 흐름에 반영했습니다.'],
+      ['SYNC', '동기화 상태를 알 수 있도록', '환자·프로젝트의 서버 동기화 IPC를 연결하고 진행률, 실패 항목 안내와 재시도 UI를 구현했습니다. 온라인 복귀 과정에서 사용자가 결과를 확인하고 다음 동작을 선택할 수 있도록 정리했습니다.']
+    ],
+    scope: '주요 기여는 React 클라이언트와 Electron의 모드 전환, 로그인, 로컬 기능 호출 및 동기화 UI입니다. 2023.01–2023.04의 기존 Sync 오프라인·Clinic 개발 경험에 이어 2025년 오프라인 모드 구현과 후속 개선을 수행했습니다.'
+  },
+  {
+    id: 'motionapp', title: 'MOTIONAPP', category: 'MILLING MACHINE / DEVICE INTEGRATION',
+    subtitle: '장비의 상태와 사용자의 조작을 하나의 화면으로.',
+    period: '2025.07 — 2025.11 · 임베디드 연동 및 Craft Dual',
+    role: 'React·Electron 장비 UI, 네이티브 모듈·로컬 API 연동 및 ARM Linux 패키징',
+    stack: 'React, TypeScript, Electron, Node.js 네이티브 바인딩, HTTP API, SSE, ARM Linux',
+    image: 'project-motionapp.svg', imageAlt: '밀링머신의 NC 실행, 원점복귀, 진행률과 알람을 앱에 연결하는 개념도',
+    imageNote: '밀링머신과 MotionApp의 연동 흐름을 재구성한 개념도입니다. 실제 제품 화면은 아닙니다.',
+    blocks: [
+      ['DEVICE BRIDGE', '장비 라이브러리와 앱을 연결', '기존 HX 장비 API를 호출하는 Node.js 네이티브 바인딩을 확장하고 React·Electron 앱과 연결했습니다. Craft Dual에서는 로컬 서버 API를 통해 장비 동작과 화면을 연동하는 구조를 구현했습니다.'],
+      ['CONTROL', '파일 선택에서 가공 조작까지', 'NC 파일 목록·선택·실행과 가공 시작·일시정지·정지 기능을 연동했습니다. 지그 척 열기·닫기, 버 목록과 장비 설정·유지관리 UI도 장비 API에 연결했습니다.'],
+      ['LIVE FEEDBACK', '실제 장비 상태를 화면에 반영', 'SSE로 가공 진행률·알람·원점복귀 상태를 수신하도록 구현했습니다. 파일 선택과 원점복귀 완료 상태를 함께 확인해 가공 시작 버튼을 활성화하고, 실행 시간과 완료 상태를 표시했습니다.'],
+      ['DELIVERY', '장비에서 실행되는 형태로', 'ARM Linux 환경을 위한 Electron 패키징과 로컬 서버를 포함한 배포 구성을 작업했습니다. 실행 런처와 종료 흐름을 연결해 장비에서 앱과 연동 서버를 함께 실행할 수 있도록 구성했습니다.']
+    ],
+    scope: '담당 범위는 기존 장비 API·라이브러리를 활용한 앱 연동, UI와 네이티브 바인딩, 실행·패키징 구성입니다. MotionApp Web 개발(2024.07–2024.08)과 구분되는 장비 연동 경험입니다.'
+  },
+  {
     id: 'operations', title: 'BUILT TO KEEP RUNNING', category: 'BUSINESS SYSTEMS / DELIVERY & OPERATIONS',
     subtitle: '기능을 만드는 일에서, 계속 작동하도록 책임지는 일까지.',
     period: '2014.03 — 현재', role: '업무 시스템 개발·유지보수, AWS 운영 개선 및 팀 개발 체계',
@@ -148,12 +180,32 @@ const projectCards: Record<ProjectId, ProjectCardData> = {
       "label": "VIEW ON APP STORE"
     }
   },
+  "offline": {
+    "className": "project-offline",
+    "id": "sync-offline",
+    "buttonLabel": "Sync 오프라인 모드 프로젝트 자세히 보기",
+    "visualLabel": "SYNC OFFLINE / WORKFLOW STUDY",
+    "number": "04 / OFFLINE WORKFLOW",
+    "description": "연결이 끊긴 현장에서도 이어지는 환자·프로젝트 작업.",
+    "tags": ["REACT · ELECTRON · IPC · SQLITE", "2025 — 2026"],
+    "screens": [{"src": "/assets/project-offline.svg", "alt": "온라인·오프라인 통신 경로와 동기화 개념도", "width": 900, "height": 1050}]
+  },
+  "motionapp": {
+    "className": "project-motionapp",
+    "id": "motionapp",
+    "buttonLabel": "MotionApp 밀링머신 연동 프로젝트 자세히 보기",
+    "visualLabel": "MOTIONAPP / DEVICE INTEGRATION STUDY",
+    "number": "05 / MACHINE INTERFACE",
+    "description": "밀링머신의 가공 조작과 실시간 상태를 앱으로.",
+    "tags": ["REACT · ELECTRON · NATIVE · SSE", "2025.07 — 2025.11"],
+    "screens": [{"src": "/assets/project-motionapp.svg", "alt": "밀링머신과 앱의 제어·상태 연결 개념도", "width": 900, "height": 1050}]
+  },
   "operations": {
     "className": "project-operations",
     "id": null,
     "buttonLabel": "Business and Operations 프로젝트 자세히 보기",
     "visualLabel": "BUSINESS LOGIC / OPERATIONS STUDY",
-    "number": "04 / BUSINESS & OPERATIONS",
+    "number": "06 / BUSINESS & OPERATIONS",
     "description": "업무의 맥락을 이해하고, 운영의 다음을 준비하다.",
     "tags": [
       "ERP · AWS · CI/CD · TEAM LEAD",
@@ -173,7 +225,7 @@ const projectCards: Record<ProjectId, ProjectCardData> = {
     "id": "madi",
     "buttonLabel": "마디 사이드 프로젝트 자세히 보기",
     "visualLabel": "MADI v0.1.5 / APP SCREENSHOT",
-    "number": "05 / PERSONAL SIDE PROJECT",
+    "number": "07 / PERSONAL SIDE PROJECT",
     "description": "듣고, 고치고, 연주하세요. 음악 연습을 위한 나만의 작업실.",
     "tags": [
       "REACT · TYPESCRIPT · PYTHON",

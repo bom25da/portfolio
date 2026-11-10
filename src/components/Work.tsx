@@ -23,6 +23,7 @@ export function Work({ onOpen }: WorkProps) {
       </div>
       {card('sync')}
       <div className="project-pair">{card('systems')}{card('cross-platform')}</div>
+      <div className="project-pair">{card('offline')}{card('motionapp')}</div>
       {card('operations')}
       {card('madi')}
       <p className="visual-note mono">

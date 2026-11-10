@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1050" viewBox="0 0 900 1050">
+  <title>Sync offline workflow concept</title>
+  <desc>One interface connects online HTTP and offline Electron IPC, with patient and project synchronization.</desc>
+  <defs>
+    <linearGradient id="paper" x2=".8" y2="1"><stop stop-color="#e0e2d8"/><stop offset="1" stop-color="#bec5b5"/></linearGradient>
+    <linearGradient id="screen" x2="1" y2="1"><stop stop-color="#3e4a3b"/><stop offset="1" stop-color="#222c25"/></linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#6e7b65" stroke-opacity=".1"/></pattern>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="200%"><feGaussianBlur stdDeviation="22"/></filter>
+  </defs>
+  <path fill="url(#paper)" d="M0 0H900V1050H0Z"/>
+  <path fill="url(#grid)" d="M0 0H900V1050H0Z"/>
+  <g fill="#35432f" font-family="Arial,sans-serif" font-size="62" font-weight="700" letter-spacing="-3">
+    <text x="65" y="150">WORK</text><text x="65" y="217">CONTINUES.</text>
+  </g>
+  <g fill="#4e5b46" font-family="monospace" font-size="14"><text x="67" y="263">ONE INTERFACE. TWO WAYS TO WORK.</text></g>
+  <ellipse cx="450" cy="826" rx="305" ry="33" fill="#35432f" opacity=".2" filter="url(#shadow)"/>
+  <g transform="translate(0 8)">
+    <rect x="98" y="355" width="270" height="116" rx="14" fill="#e9ece2" stroke="#87947b"/>
+    <rect x="532" y="355" width="270" height="116" rx="14" fill="#e9ece2" stroke="#87947b"/>
+    <g fill="#3e4b35" font-family="monospace"><text x="125" y="392" font-size="12">01 / ONLINE</text><text x="125" y="432" font-size="26">HTTP API</text><text x="559" y="392" font-size="12">02 / OFFLINE</text><text x="559" y="432" font-size="26">ELECTRON IPC</text></g>
+    <g fill="none" stroke="#738468" stroke-width="2"><path d="M233 471V510H667V471M450 510V550"/><path d="m442 542 8 8 8-8"/></g>
+    <rect x="150" y="551" width="600" height="242" rx="14" fill="#243025"/>
+    <rect x="160" y="561" width="580" height="222" rx="8" fill="url(#screen)" stroke="#809075"/>
+    <path d="M160 601H740" stroke="#7f8e72" stroke-opacity=".5"/>
+    <circle cx="183" cy="582" r="4" fill="#b8c9a4"/><circle cx="199" cy="582" r="4" fill="#829477"/><circle cx="215" cy="582" r="4" fill="#63785b"/>
+    <g font-family="monospace" fill="#dbe3cf"><text x="189" y="645" font-size="13">PATIENTS / PROJECTS</text><text x="189" y="692" font-size="31">LOCAL WORKSPACE</text></g>
+    <g fill="#91a180" opacity=".5"><rect x="190" y="720" width="240" height="7" rx="3"/><rect x="190" y="741" width="180" height="7" rx="3"/></g>
+    <circle cx="674" cy="685" r="24" fill="none" stroke="#adc596" stroke-width="1.5"/><path d="m663 685 8 8 14-17" fill="none" stroke="#c5d6b3" stroke-width="2"/>
+    <path d="M130 793H770L805 814Q810 823 797 825H103Q90 823 95 814Z" fill="#718269" stroke="#5e7057"/>
+    <path d="M385 795H515L529 807H371Z" fill="#a6b39b"/>
+  </g>
+  <path d="M65 900H835" stroke="#8e9c81"/>
+  <g font-family="monospace" fill="#46563b" font-size="13"><text x="66" y="935">SIGN IN</text><text x="328" y="935">WORK LOCALLY</text><text x="655" y="935">SYNC RESULTS</text></g>
+  <g fill="none" stroke="#7a8d6b" stroke-width="1.5"><path d="M164 930H290m-9-6 9 6-9 6M469 930H618m-9-6 9 6-9 6"/></g>
+  <text x="66" y="998" fill="#68765d" font-family="monospace" font-size="10" letter-spacing="1">WORKFLOW CONCEPT / NOT A PRODUCT SCREENSHOT</text>
+</svg>
