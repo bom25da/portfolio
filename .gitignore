@@ -3,6 +3,8 @@ node_modules/
 __pycache__/
 .sites-runtime/
 .sites-checkout/
+.build/
+.cloudflare/
 *.tar.gz
 *.zip
 
@@ -29,3 +31,8 @@ id_ed25519
 
 # Vite production output
 dist/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example

@@ -24,13 +24,13 @@
 | 개발·번들링 | Vite 8, React Fast Refresh |
 | 스타일·모션 | CSS, Intersection Observer, SVG |
 | 타입 검사 | TypeScript strict 모드 |
-| 배포 | 정적 HTML·JS·CSS, Sites 호스팅 |
+| 배포 | 정적 HTML·JS·CSS, Cloudflare Workers Static Assets |
 
 이 저장소는 포트폴리오 웹사이트 소스입니다. 화면에 소개하는 NestJS·DB 등의 기술은 각 프로젝트의 경력 기술이며, 이 사이트 자체에 별도 API 서버나 DB는 없습니다.
 
 ## 로컬 실행
 
-Node.js **22.12 이상**과 npm이 필요합니다. 현재 작업 환경은 Node.js 24입니다.
+Node.js **22.18 이상**과 npm이 필요합니다. 현재 작업 환경은 Node.js 24입니다.
 
 ```sh
 git clone https://github.com/bom25da/portfolio.git
@@ -53,7 +53,7 @@ npm run build
 npm run preview -- --port 4173
 ```
 
-빌드는 React 트리를 `dist/index.html`에 미리 렌더링하고 브라우저에서 같은 트리를 hydrate합니다. 배포 후 Node.js 서버를 계속 실행할 필요가 없습니다.
+빌드는 React 트리를 `.cloudflare/output/v0/workers/default/assets/index.html`에 미리 렌더링하고 브라우저에서 같은 트리를 hydrate합니다. 배포 후 Node.js 서버를 계속 실행할 필요가 없습니다.
 
 ## 디렉터리 구조
 
@@ -81,10 +81,10 @@ scripts/
 ├── knot_art.py              # 3D 매듭과 2D 마크 SVG 생성
 └── render-knot-previews.cjs  # 매듭 PNG·파비콘·검토 이미지 생성
 index.html                  # HTML 템플릿·검색·소셜 메타데이터
-.openai/hosting.json         # Sites 프로젝트 연결·정적 배포 경로
+cloudflare.config.ts        # Cloudflare 계정·Worker·도메인 설정
 ```
 
-`dist/`와 `.sites-runtime/`은 생성되는 파일이며 Git에서 제외합니다.
+`.cloudflare/`와 `.build/` 디렉터리는 빌드 과정에서 생성되며 Git에서 제외합니다.
 
 ## 콘텐츠 수정
 
@@ -105,14 +105,32 @@ index.html                  # HTML 템플릿·검색·소셜 메타데이터
 
 ## 배포
 
-현재 공개 주소는 [springcotton.com](https://springcotton.com/)이며 Sites에서 정적 파일을 제공합니다. `.openai/hosting.json`은 프로젝트 식별자와 출력 경로만 포함하며 인증 키를 저장하지 않습니다.
+현재 공개 주소는 [springcotton.com](https://springcotton.com/)이며 **개인 Cloudflare 계정의 Workers Static Assets**에서 제공합니다.
 
-1. `npm ci`로 의존성을 설치합니다.
-2. `npm run build`로 타입 검사와 정적 빌드를 완료합니다.
-3. `npm run preview`로 변경 사항을 확인합니다.
-4. Sites에 빌드 결과인 `dist/`를 배포합니다.
+- Cloudflare 계정: `Greenish9@naver.com's Account` (`2fa435b9ebc013cd81961684f045499d`)
+- Worker: `springcotton-portfolio`
+- 소스 저장소: [bom25da/portfolio](https://github.com/bom25da/portfolio), `main` 브랜치
+- 배포 설정: `cloudflare.config.ts`
+- 빌드 출력: `.cloudflare/output/v0/`
 
-다른 정적 호스팅에서도 `dist/`를 배포할 수 있습니다. 호스팅을 옮길 때는 `_headers` 지원 여부와 도메인, `index.html`·`robots.txt`·`sitemap.xml`의 URL을 확인합니다. GitHub에 push하는 작업과 사이트를 배포하는 작업은 별개입니다.
+최초 배포 시 Cloudflare CLI에 로그인합니다. 계정 인증값은 Git에 저장하지 않습니다.
+
+```sh
+npx cf auth login
+npm ci
+npm run deploy
+```
+
+`npm run deploy`는 타입 검사·정적 빌드·HTML 사전 렌더링을 마친 다음 `cf deploy --prebuilt`로 검증한 산출물을 업로드합니다. `cf deploy`를 직접 실행하면 HTML 사전 렌더링 단계를 건너뛰므로 프로젝트의 배포 스크립트를 사용합니다.
+
+배포하지 않고 산출물만 검증하려면 다음 명령을 사용합니다.
+
+```sh
+npm run build
+npx cf deploy --prebuilt --dry-run
+```
+
+현재 GitHub push와 Cloudflare 배포는 별도 작업입니다. 자동 배포는 별도로 연결하기 전까지 실행되지 않습니다.
 
 ## 공개 파일 관리
 
