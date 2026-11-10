@@ -12,8 +12,8 @@ interface ProjectDialogProps {
 function ProjectVisual({ project }: { project: PortfolioProject }) {
   if (project.images) {
     return (
-      <div className="case-mobile-gallery">
-        {project.images.map(shot => <img key={shot.file} src={'/assets/' + shot.file} alt={shot.alt} width="392" height="696" />)}
+      <div className={project.galleryStyle === 'landscape' ? 'case-landscape-gallery' : 'case-mobile-gallery'}>
+        {project.images.map(shot => <img key={shot.file} src={'/assets/' + shot.file} alt={shot.alt} width={shot.width ?? 392} height={shot.height ?? 696} />)}
       </div>
     );
   }

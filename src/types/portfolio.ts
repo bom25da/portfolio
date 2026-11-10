@@ -1,4 +1,4 @@
-export type ProjectId = 'sync' | 'systems' | 'cross-platform' | 'offline' | 'motionapp' | 'operations' | 'madi';
+export type ProjectId = 'sync' | 'systems' | 'cross-platform' | 'offline' | 'motionapp' | 'model-builder' | 'operations' | 'madi';
 export type ProjectDirection = -1 | 1;
 
 interface ProjectFields {
@@ -15,13 +15,14 @@ interface ProjectFields {
   imageNote?: string;
   imageSource?: string;
   imageSourceLabel?: string;
+  galleryStyle?: 'mobile' | 'landscape';
   url?: string;
   urlLabel?: string;
 }
 
 type ProjectVisual =
   | { image: string; imageFit?: 'contain'; images?: never }
-  | { images: readonly { file: string; alt: string }[]; image?: never; imageFit?: never };
+  | { images: readonly { file: string; alt: string; width?: number; height?: number }[]; image?: never; imageFit?: never };
 
 export type CaseStudy = ProjectFields & ProjectVisual;
 

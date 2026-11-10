@@ -8,13 +8,13 @@
 
 큰 타이포그래피와 밝고 어두운 섹션, 하나로 이어진 매듭을 중심으로 작업 경험을 소개합니다.
 
-- **Selected Work**: Sync Platform, 백엔드 API·데이터 처리, DOF Sync Mobile, Sync 오프라인 모드, MotionApp 밀링머신 연동, 업무 시스템·운영, 개인 프로젝트 마디의 일곱 가지 사례
+- **Selected Work**: Sync Platform, 백엔드 API·데이터 처리, DOF Sync Mobile, Sync 오프라인 모드, MotionApp 밀링머신 연동, Model Builder, 업무 시스템·운영, 개인 프로젝트 마디의 여덟 가지 사례
 - **About & Stack**: 경력과 분야별 기술 스택, 브랜드 색상을 유지한 기술 아이콘
 - **Interaction**: 스크롤 텍스트 애니메이션, 프로젝트 상세 다이얼로그, 이전·다음 프로젝트 탐색, 이메일 복사
 - **Accessibility**: 키보드 탐색, 본문 바로가기, 다이얼로그 포커스 복원, 동작 줄이기 설정 지원
 - **Responsive & SEO**: 모바일·데스크톱 레이아웃, 정적 HTML 사전 렌더링, 검색·소셜 메타데이터, 사이트맵
 
-`SELECTED WORK (07)`의 숫자는 프로젝트 데이터에서 계산한 작업 개수입니다.
+`SELECTED WORK (08)`의 숫자는 프로젝트 데이터에서 계산한 작업 개수입니다.
 
 ## 기술 구성
 
@@ -148,10 +148,12 @@ gitleaks git . --log-opts=--all --redact=100
 | --- | --- |
 | Sync 제품 이미지 | [DOF 공식 소개 페이지](https://doflab.com/en/software/sync), © DOF |
 | DOF Sync Mobile 화면 2종 | [공식 App Store](https://apps.apple.com/kr/app/dof-sync-mobile/id6451134757), © DOF |
+| MotionApp 대표·상태 화면 | [DOF 공식 MotionApp 소개 페이지](https://doflab.com/en/software/motionapp), © DOF |
+| Model Builder 모델 예시 | 제품 내 도움말에 사용하는 트리밍·베이스 텍스트 이미지, © DOF |
 | 마디 화면 | 직접 제작·운영하는 [마디](https://madi.springcotton.com/)의 실제 앱 캡처 |
 | 매듭·파비콘·업무 개념도 | 매듭·기존 개념도는 생성 스크립트로 제작, 오프라인·장비 연동 개념도는 SVG로 작성 |
 | Barlow Condensed | SIL Open Font License, `public/assets/OFL-Barlow.txt` |
 | IBM Plex Mono | SIL Open Font License, `public/assets/OFL-IBM-Plex-Mono.txt` |
 | 기술 아이콘 | [Devicon v2.17.0](https://github.com/devicons/devicon/tree/v2.17.0), MIT, `public/assets/icons/LICENSE` |
 
-Sync Mobile은 2026-11-09에 받은 공식 Main board·3D File Viewer 이미지이며, 마디는 같은 날 v0.1.5 피아노 편집 화면을 캡처했습니다. 그 외 프로젝트 시각 자료는 실제 제품 화면이 아닌 개념도임을 사이트에 표시합니다. 외부 제품 이미지와 상표의 권리는 각 권리자에게 있습니다.
+Sync Mobile은 2026-11-09에 받은 공식 Main board·3D File Viewer 이미지이며, 마디는 같은 날 v0.1.5 피아노 편집 화면을 캡처했습니다. MotionApp 이미지는 2026-11-10에 공식 소개 페이지에서 받았습니다. Model Builder는 제품 도움말의 모델 예시이며, 오프라인·API·업무 시스템 시각 자료는 구현 경험을 재구성한 개념도입니다. 외부 제품 이미지와 상표의 권리는 각 권리자에게 있습니다.

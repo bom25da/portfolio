@@ -69,8 +69,9 @@ const caseStudies: CaseStudy[] = [
     period: '2025.07 — 2025.11 · 임베디드 연동 및 Craft Dual',
     role: 'React·Electron 장비 UI, 네이티브 모듈·로컬 API 연동 및 ARM Linux 패키징',
     stack: 'React, TypeScript, Electron, Node.js 네이티브 바인딩, HTTP API, SSE, ARM Linux',
-    image: 'project-motionapp.svg', imageAlt: '밀링머신의 NC 실행, 원점복귀, 진행률과 알람을 앱에 연결하는 개념도',
-    imageNote: '밀링머신과 MotionApp의 연동 흐름을 재구성한 개념도입니다. 실제 제품 화면은 아닙니다.',
+    image: 'project-motionapp-official.jpg', imageFit: 'contain', imageAlt: 'DOF 공식 MotionApp 소개 이미지: 밀링머신과 스마트폰을 통한 가공 상태 확인',
+    imageNote: 'DOF MotionApp 공식 소개 페이지의 제품 이미지입니다. 아래 본문은 임베디드·Craft Dual 장비 연동에서 담당한 개발 내용입니다.',
+    imageSource: 'https://doflab.com/en/software/motionapp',
     blocks: [
       ['DEVICE BRIDGE', '장비 라이브러리와 앱을 연결', '기존 HX 장비 API를 호출하는 Node.js 네이티브 바인딩을 확장하고 React·Electron 앱과 연결했습니다. Craft Dual에서는 로컬 서버 API를 통해 장비 동작과 화면을 연동하는 구조를 구현했습니다.'],
       ['CONTROL', '파일 선택에서 가공 조작까지', 'NC 파일 목록·선택·실행과 가공 시작·일시정지·정지 기능을 연동했습니다. 지그 척 열기·닫기, 버 목록과 장비 설정·유지관리 UI도 장비 API에 연결했습니다.'],
@@ -78,6 +79,26 @@ const caseStudies: CaseStudy[] = [
       ['DELIVERY', '장비에서 실행되는 형태로', 'ARM Linux 환경을 위한 Electron 패키징과 로컬 서버를 포함한 배포 구성을 작업했습니다. 실행 런처와 종료 흐름을 연결해 장비에서 앱과 연동 서버를 함께 실행할 수 있도록 구성했습니다.']
     ],
     scope: '담당 범위는 기존 장비 API·라이브러리를 활용한 앱 연동, UI와 네이티브 바인딩, 실행·패키징 구성입니다. MotionApp Web 개발(2024.07–2024.08)과 구분되는 장비 연동 경험입니다.'
+  },
+  {
+    id: 'model-builder', title: 'MODEL BUILDER', category: 'DENTAL 3D / MODEL GENERATION',
+    subtitle: '치아 스캔 데이터를 편집하고, 출력할 수 있는 모델로.',
+    period: '2026.05 — 2026.10 · 신규 앱 개발 및 후속 개선',
+    role: '3D 편집 UI·모델 생성과 STL 저장·복원, Electron IPC·설치·업데이트 개발',
+    stack: 'React, TypeScript, Three.js, React Three Fiber, Web Worker, Manifold, Electron, IPC',
+    galleryStyle: 'landscape',
+    images: [
+      {file: 'model-builder-trim.png', alt: 'Model Builder 제품 도움말의 치아 스캔 트리밍 영역 예시', width: 389, height: 253},
+      {file: 'model-builder-edit-text.png', alt: 'Model Builder 제품 도움말의 상·하악 모델과 베이스 텍스트 예시', width: 389, height: 254}
+    ],
+    imageNote: 'Model Builder 제품 내 도움말에 사용하는 트리밍·베이스 텍스트 모델 예시입니다.',
+    blocks: [
+      ['WORKFLOW', '스캔에서 모델 완성까지 이어지는 단계', 'React·TypeScript 기반 Model Builder 앱과 단계별 워크플로를 개발했습니다. Three.js·React Three Fiber로 상·하악 스캔을 표시하고 교합평면 설정, 자동 정렬과 브러시·폴리곤 트리밍, 실행 취소·다시 실행을 구현했습니다.'],
+      ['GEOMETRY', '편집 결과를 출력 가능한 형상으로', '스캔 경계와 베이스를 연결하는 표면, 솔리드·중공·허니컴 베이스, 배수홀과 텍스트·교합기 편집 기능을 개발했습니다. 경계 균열·자기교차·내벽 누락과 Boolean 연산 문제를 수정하고 관련 회귀 테스트를 작성했습니다.'],
+      ['SAVE & RESTORE', '저장한 작업을 그대로 이어가기', 'STL 내보내기와 프로젝트 스냅샷·메시 저장 및 복원을 구현했습니다. 단일 악궁 복원과 트리밍 상태·편집 옵션 복원을 보완하고, 무거운 모델 생성과 STL 직렬화를 Web Worker로 분리해 처리했습니다.'],
+      ['DESKTOP', '설치부터 업데이트까지 연결', 'Electron의 파일 읽기·변환·저장과 설정·번역 IPC를 연결했습니다. Windows 설치 UI와 설치 경로 이전, 앱·렌더러 업데이트 및 실패 시 기본 렌더러로 실행을 이어가는 흐름을 개발·보완했습니다.']
+    ],
+    scope: '3D 모델 편집·형상 생성, 파일·프로젝트 저장과 복원부터 Electron 앱 설치·업데이트까지 개발했습니다.'
   },
   {
     id: 'operations', title: 'BUILT TO KEEP RUNNING', category: 'BUSINESS SYSTEMS / DELIVERY & OPERATIONS',
@@ -194,18 +215,31 @@ const projectCards: Record<ProjectId, ProjectCardData> = {
     "className": "project-motionapp",
     "id": "motionapp",
     "buttonLabel": "MotionApp 밀링머신 연동 프로젝트 자세히 보기",
-    "visualLabel": "MOTIONAPP / DEVICE INTEGRATION STUDY",
+    "visualLabel": "MOTIONAPP / OFFICIAL PRODUCT SCREENS",
     "number": "05 / MACHINE INTERFACE",
     "description": "밀링머신의 가공 조작과 실시간 상태를 앱으로.",
     "tags": ["REACT · ELECTRON · NATIVE · SSE", "2025.07 — 2025.11"],
-    "screens": [{"src": "/assets/project-motionapp.svg", "alt": "밀링머신과 앱의 제어·상태 연결 개념도", "width": 900, "height": 1050}]
+    "screens": [
+      {"src": "/assets/motionapp-work-status.jpg", "alt": "DOF MotionApp 공식 가공 진행 상태 화면", "width": 384, "height": 810},
+      {"src": "/assets/motionapp-machine-status.jpg", "alt": "DOF MotionApp 공식 밀링머신 상태 화면", "width": 384, "height": 810}
+    ]
+  },
+  "model-builder": {
+    "className": "project-modelbuilder",
+    "id": "model-builder",
+    "buttonLabel": "Model Builder 3D 모델 개발 프로젝트 자세히 보기",
+    "visualLabel": "MODEL BUILDER / PRODUCT GUIDE EXAMPLE",
+    "number": "06 / DENTAL 3D MODELING",
+    "description": "교합평면·트리밍부터 베이스 생성과 STL 저장까지.",
+    "tags": ["REACT · THREE.JS · WEB WORKER · ELECTRON", "2026.05 — 2026.10"],
+    "screens": [{"src": "/assets/model-builder-edit-text.png", "alt": "Model Builder 제품 도움말에 사용하는 상·하악 모델과 베이스 텍스트 예시", "width": 389, "height": 254}]
   },
   "operations": {
     "className": "project-operations",
     "id": null,
     "buttonLabel": "Business and Operations 프로젝트 자세히 보기",
     "visualLabel": "BUSINESS LOGIC / OPERATIONS STUDY",
-    "number": "06 / BUSINESS & OPERATIONS",
+    "number": "07 / BUSINESS & OPERATIONS",
     "description": "업무의 맥락을 이해하고, 운영의 다음을 준비하다.",
     "tags": [
       "ERP · AWS · CI/CD · TEAM LEAD",
@@ -225,7 +259,7 @@ const projectCards: Record<ProjectId, ProjectCardData> = {
     "id": "madi",
     "buttonLabel": "마디 사이드 프로젝트 자세히 보기",
     "visualLabel": "MADI v0.1.5 / APP SCREENSHOT",
-    "number": "07 / PERSONAL SIDE PROJECT",
+    "number": "08 / PERSONAL SIDE PROJECT",
     "description": "듣고, 고치고, 연주하세요. 음악 연습을 위한 나만의 작업실.",
     "tags": [
       "REACT · TYPESCRIPT · PYTHON",

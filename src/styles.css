@@ -75,6 +75,14 @@ dialog{border:0;color:var(--ink);background:var(--paper);padding:0}dialog::backd
 .case-mobile-gallery img{display:block;width:100%;height:auto;border-radius:9px;box-shadow:0 18px 35px #10103940}
 @media(max-width:680px){.sync-mobile-preview{padding:42px 16px;gap:12px}.sync-mobile-preview img{border-radius:6px}.sync-mobile-preview img:first-child{translate:0 -10px}.sync-mobile-preview img:nth-child(2){translate:0 10px}.case-mobile-gallery{gap:12px;padding:20px 14px}.case-mobile-gallery img{border-radius:5px}}
 
+/* Keep product guide images at their natural aspect ratio. */
+.project-modelbuilder .project-image{padding:55px 30px;background:#e8e5ef}
+.project-modelbuilder .project-image img{max-width:389px;margin:auto}
+.project-modelbuilder .project-visual-label{mix-blend-mode:normal;color:#575266;font-size:8px}
+.case-landscape-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,389px));justify-content:center;align-items:center;gap:24px;padding:35px;background:#e8e5ef}
+.case-landscape-gallery img{display:block;width:100%;height:auto}
+@media(max-width:680px){.project-modelbuilder .project-image{padding:50px 20px 30px}.case-landscape-gallery{grid-template-columns:1fr;gap:18px;padding:20px}}
+
 /* Draw decorative stars as geometry so mobile never substitutes color emoji. */
 .asterisk-icon{display:block;width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:4.5;stroke-linecap:square}
 .brand-star,.statement-asterisk{line-height:1}
