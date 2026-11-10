@@ -6,5 +6,26 @@ __pycache__/
 *.tar.gz
 *.zip
 
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+.npmrc
+.netrc
+.aws/
+.secrets/
+credentials/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+
+# Local logs
+*.log
+
 # Vite production output
 dist/
